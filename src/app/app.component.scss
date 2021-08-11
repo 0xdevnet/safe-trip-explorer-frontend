@@ -1,0 +1,18 @@
+@import '../global.scss';
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  mat-drawer {
+    width: 70px;
+  }
+  mat-drawer-container {
+    height: 100%;
+    background-color: $primary-darker;
+  }
+
+  .mat-drawer{
+    background-color: $primary-darker !important;
+}

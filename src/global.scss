@@ -1,0 +1,19 @@
+$primary:#3F7276;
+$primary-light:#519297;
+$primary-lighter:#60a5aa;
+$primary-dark:#2d5255;
+$primary-darker:#213d3f;
+
+$secondary:#FFF9D2;
+$secondary-light:#fffef4;
+$secondary-dark:#fff08e;
+$dark:#202E2D;
+
+$theme-colors: (
+  "primary-darker": $primary-darker,
+);
+
+
+*{
+    font-family: Montserrat, 'sans-serif' !important;
+}

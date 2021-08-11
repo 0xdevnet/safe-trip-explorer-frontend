@@ -1,0 +1,37 @@
+@import '../../../global';
+
+
+.logo {
+  text-align: center;
+  img {
+    width: 90%;
+  }
+}
+.mat-list-item {
+  color: white !important;
+  margin-bottom:6px;
+  ::ng-deep {
+    .mat-list-item-content {
+      font-size:30px;
+      color:$secondary;
+      border-radius: 10px;
+      margin: 20px 10px;
+      display:flex;
+      justify-content: center;
+      &:hover {
+        color:$secondary;
+        background: $primary !important;
+      }
+    }
+  }
+}
+.list-item-active {
+  ::ng-deep {
+    .mat-list-item-content {
+      &:hover {
+        color:$secondary;
+      }
+    }
+  }
+}
+  

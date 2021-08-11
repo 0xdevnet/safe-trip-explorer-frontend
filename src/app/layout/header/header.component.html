@@ -1,0 +1,73 @@
+<nav class="navbar navbar-light bg-primary-darker">
+  <div class="d-flex">
+    <a class='name text-secondary' routerLink="/">SAFE TRIP FINANCE</a>
+    
+  </div>
+
+
+
+  <div class="d-flex">
+
+    <div class="center" [class.dropdown] = !isMenuDropdown>
+      <div [class.center] = isMenuDropdown [class.dropdown-menu] = !isMenuDropdown>
+        <a class="nav-link " href="#">💯 Top 100</a>
+        <a class="nav-link" href="#">🚀 Trending</a>
+        <a class="nav-link" href="#">🔥 Newly Added</a>
+      </div>
+    </div> 
+
+    <button class="round btn btn-primary-darker" [class.hidebtn] = isMenuDropdown
+    #tooltip_menuu="matTooltip"
+    matTooltip="Menu"
+    id="dropdownMenuButton" data-toggle="dropdown">
+      <span class="bi bi-caret-down-square-fill"></span>
+    </button>
+
+    <button
+    [matMenuTriggerFor]="search"
+    #tooltip_search="matTooltip"
+    matTooltip="Search Tokens"
+    class="round btn btn-primary-darker">
+    <span class="bi bi-search"></span> 
+  </button>
+  
+  <button
+    [matMenuTriggerFor]="menu"
+    #tooltip_menu="matTooltip"
+    matTooltip="Watchlist"
+    class="round btn btn-primary-darker">
+    <span class="bi bi-eye-fill"></span> 
+  </button>
+
+  <button
+    [matMenuTriggerFor]="wallet"
+    #tooltip_wallet="matTooltip"
+    matTooltip="Connect Wallet"
+    class="round btn btn-primary-darker">
+    <span class="bi bi-wallet2"></span> 
+  </button>
+  </div>
+  
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span class="bi-eye-fill"></span>
+      Logout
+    </button>
+  </mat-menu>
+
+  <mat-menu #search="matMenu" >
+    <input (click)="$event.stopPropagation()" class="form-control ml-3 mr-3" 
+    type="search" style="width:auto;font-size:13px;" placeholder="Search Token/Paste Address" aria-label="Search">
+    
+  </mat-menu>
+
+  <mat-menu #wallet="matMenu">
+    <button mat-menu-item>
+      <span class="bi-link-45deg"></span>
+      Connect Wallet
+    </button>
+  </mat-menu>
+
+
+</nav>
