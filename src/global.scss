@@ -3,14 +3,19 @@ $primary-light:#519297;
 $primary-lighter:#60a5aa;
 $primary-dark:#2d5255;
 $primary-darker:#213d3f;
-
+$white:#FFF;
 $secondary:#FFF9D2;
 $secondary-light:#fffef4;
 $secondary-dark:#fff08e;
 $dark:#202E2D;
 
 $theme-colors: (
+  "primary-light" : $primary-light,
+  "primary-lighter" : $primary-lighter,
+  "primary-dark" : $primary-dark,
   "primary-darker": $primary-darker,
+  "secondary-light": $secondary-light,
+  "secindary-dark": $secondary-dark,
 );
 
 

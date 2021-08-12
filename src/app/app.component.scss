@@ -8,6 +8,12 @@
   mat-drawer {
     width: 70px;
   }
+  @media screen and (max-width:600px) {
+    mat-drawer {
+      width: 50px;
+    }
+  }
+
   mat-drawer-container {
     height: 100%;
     background-color: $primary-darker;

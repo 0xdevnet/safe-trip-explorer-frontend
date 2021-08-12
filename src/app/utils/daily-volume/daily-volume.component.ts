@@ -3,20 +3,16 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-daily-volume',
+  templateUrl: './daily-volume.component.html',
+  styleUrls: ['./daily-volume.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DailyVolumeComponent implements OnInit {
 
-  constructor() { }
-
-  
   public lineChartData: ChartDataSets[] = [
-    { data: [10, 20, 5, 25, 40 ,30, 23, 50, 30, 60, 65, 59, 80, 81, 56, 55, 40], label: 'Price' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
   ];
-
-
+  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -47,8 +43,9 @@ export class DashboardComponent implements OnInit {
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [];
 
-  ngOnInit(): void {
-    
+  constructor() { }
+
+  ngOnInit() {
   }
 
 }

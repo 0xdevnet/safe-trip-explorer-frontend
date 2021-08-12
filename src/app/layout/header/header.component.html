@@ -16,7 +16,7 @@
       </div>
     </div> 
 
-    <button class="round btn btn-primary-darker" [class.hidebtn] = isMenuDropdown
+    <button class="round btn btn-primary" [class.hidebtn] = isMenuDropdown
     #tooltip_menuu="matTooltip"
     matTooltip="Menu"
     id="dropdownMenuButton" data-toggle="dropdown">
@@ -27,7 +27,7 @@
     [matMenuTriggerFor]="search"
     #tooltip_search="matTooltip"
     matTooltip="Search Tokens"
-    class="round btn btn-primary-darker">
+    class="round btn btn-primary">
     <span class="bi bi-search"></span> 
   </button>
   
@@ -35,7 +35,7 @@
     [matMenuTriggerFor]="menu"
     #tooltip_menu="matTooltip"
     matTooltip="Watchlist"
-    class="round btn btn-primary-darker">
+    class="round btn btn-primary">
     <span class="bi bi-eye-fill"></span> 
   </button>
 
@@ -43,7 +43,7 @@
     [matMenuTriggerFor]="wallet"
     #tooltip_wallet="matTooltip"
     matTooltip="Connect Wallet"
-    class="round btn btn-primary-darker">
+    class="round btn btn-primary">
     <span class="bi bi-wallet2"></span> 
   </button>
   </div>
@@ -63,7 +63,7 @@
   </mat-menu>
 
   <mat-menu #wallet="matMenu">
-    <button mat-menu-item>
+    <button (click)="connectWallet()" mat-menu-item>
       <span class="bi-link-45deg"></span>
       Connect Wallet
     </button>
@@ -71,3 +71,10 @@
 
 
 </nav>
+
+<div class="trend-wrapper d-flex flex-row flex-nowrap">
+  <div class="trending text-primary-lighter" *ngFor="let pair of pairs;let i = index">
+    <span class="text-white">#{{i+1}}</span> {{pair.target_currency_short_name}} - {{pair.price}}
+  </div>
+  
+</div>

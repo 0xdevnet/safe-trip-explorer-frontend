@@ -1,5 +1,89 @@
-<div style="height:100%;width:100%;padding:20px;">
-    <div class="bg-dark" style="height:100%;width:100%;border-radius:40px;">
+<div class="main-explorer row" style="margin-top:25px;padding:10px;">
+    
+    <div class="col-md-4 mb-4" >
+        <div class="box" style="padding:30px 20px;">
+            <div>
+                <h1 class="text-left token">STF/BUSD</h1>
+            </div>
+            <div class="icons">
+                <app-links
+                
+                ></app-links>
+            </div>
+            <div class="d-flex justify-content-start mt-3">
+                <button class="btn btn-secondary btn-lg">
+                    Trade
+                </button>
+            </div>
+            <div class="">
+                <h1 class="text-right text-white font-weight-bolder">$43,242</h1>
+                <app-daily-volume>
+                </app-daily-volume>
+                
+            </div>
+            <h4 class="text-center mt-2 text-white font-weight-bold">Daily Volume</h4>
+        </div>
+
+        <div class="box mt-4" style="padding:30px 20px;">
+            <div class="" style="padding:10px;">
+                <div class="cryptohopper-web-widget news"
+                data-id="5" data-news_length="20"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mb-4">
+        <div class="box" style="padding:30px 20px;">
+            <h1 class="token text-right">Safe Trip</h1>
+            <div id="chart">
+                <!-- TW chart with safetrip data -->
+                <canvas baseChart 
+                    [datasets]="lineChartData"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around mt-4">
+            <div class="box" style="padding:10px;">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                </ul>
+            </div>
+            <div class="box" style="padding:10px;">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                    <li>Lorem ipsum dolor sit amet consectetu?</li>
+                </ul>
+            </div>
+        </div>
+
+        
 
     </div>
+
+    
+    
 </div>
