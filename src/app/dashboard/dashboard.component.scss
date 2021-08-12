@@ -12,3 +12,18 @@
 .mcw-n-content > a{
     color:white !important;
 }
+.thead{
+    background-color:$primary-darker !important;
+    color:$white;
+}
+
+.link{
+    color: $secondary;
+    font-size:22px;
+}
+.list{
+    color:white;
+    font-size:30px;
+    font-weight:600;
+    padding:10px 0px;
+}

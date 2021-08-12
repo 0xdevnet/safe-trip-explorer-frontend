@@ -1,10 +1,9 @@
 <nav class="navbar navbar-light bg-primary-darker">
   <div class="d-flex">
     <a class='name text-secondary' routerLink="/">SAFE TRIP FINANCE</a>
+    <a class='name text-secondary d-sm-none d-block' routerLink="/">STF</a>
     
   </div>
-
-
 
   <div class="d-flex">
 
@@ -39,42 +38,38 @@
     <span class="bi bi-eye-fill"></span> 
   </button>
 
-  <button
-    [matMenuTriggerFor]="wallet"
-    #tooltip_wallet="matTooltip"
-    matTooltip="Connect Wallet"
-    class="round btn btn-primary">
-    <span class="bi bi-wallet2"></span> 
-  </button>
   </div>
   
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span class="bi-eye-fill"></span>
-      Logout
-    </button>
+  <mat-menu #menu="matMenu" class="">
+
+      <table class="table table-borderless data-justify data-container">
+        <h2 class="text-center">Watchlist</h2>
+        <tr mat-menu-item *ngFor="let pair of watchList;let i = index" id={{pair.id}} (click)="$event.stopPropagation()">
+            <td style="font-size:20px;cursor:pointer;"><span (click)="removeToken($event)" class="bi-heart-fill text-danger"></span></td>
+            <td class="text-primary">{{pair.name | titlecase}}</td>
+            <td class="text-primary">{{pair.price}}</td>
+        </tr>
+      </table>
+      <div mat-menu-item style="width:100%;" *ngIf="watchList.length == 0">
+        <h4 class="text-center text-danger">Saved Tokens Will Appear Here.</h4>
+      </div>
   </mat-menu>
 
   <mat-menu #search="matMenu" >
-    <input (click)="$event.stopPropagation()" class="form-control ml-3 mr-3" 
+    <div mat-meu-item class="notification-container">
+      <input  (click)="$event.stopPropagation()" class="form-control ml-3 mr-3" 
     type="search" style="width:auto;font-size:13px;" placeholder="Search Token/Paste Address" aria-label="Search">
+    </div>
+    
     
   </mat-menu>
-
-  <mat-menu #wallet="matMenu">
-    <button (click)="connectWallet()" mat-menu-item>
-      <span class="bi-link-45deg"></span>
-      Connect Wallet
-    </button>
-  </mat-menu>
-
 
 </nav>
 
 <div class="trend-wrapper d-flex flex-row flex-nowrap">
   <div class="trending text-primary-lighter" *ngFor="let pair of pairs;let i = index">
-    <span class="text-white">#{{i+1}}</span> {{pair.target_currency_short_name}} - {{pair.price}}
+    <span class="text-white">#{{i+1}}</span> {{pair.name}} - {{pair.price}}
   </div>
   
 </div>

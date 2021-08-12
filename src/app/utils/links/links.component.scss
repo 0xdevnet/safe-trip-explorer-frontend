@@ -1,4 +1,4 @@
-@import '../../global.scss';
+@import '../../../global.scss';
 .icons{
     margin-right:10px;
     border-radius: 50%;
@@ -7,7 +7,7 @@
     font-size:auto;
     font-weight:800;
     padding:5px;
-    background-color:$secondary-light;
+    background-color:white;
     &:hover{
         background-color:$secondary;
     }

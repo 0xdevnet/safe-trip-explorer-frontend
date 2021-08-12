@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { TrendWatchService } from 'src/app/services/trend-watch.service';
 
 @Component({
   selector: 'app-header',
@@ -14,53 +15,13 @@ export class HeaderComponent implements OnInit {
   onResize() {  
     this.toggleMenu();
   }  
-  pairs:any[] = [
-    {
-    'target_currency_short_name': 'MoonDoge',
-    'price':'0.482'
-    },
-    {
-    'target_currency_short_name': 'SafeTrip',
-    'price':'0.482'
-    },
-    {
-    'target_currency_short_name': 'BTT', 
-    'price':'0.482'
-    },
-    {
-      'target_currency_short_name': 'BTT', 
-      'price':'0.482'
-      },
-      {
-        'target_currency_short_name': 'BTT', 
-        'price':'0.482'
-        },
-        {
-          'target_currency_short_name': 'BTT', 
-          'price':'0.482'
-          },
-          {
-            'target_currency_short_name': 'BTT', 
-            'price':'0.482'
-            },
-            {
-              'target_currency_short_name': 'BTT', 
-              'price':'0.482'
-              },
-              {
-                'target_currency_short_name': 'BTT', 
-                'price':'0.482'
-                },
-                {
-                  'target_currency_short_name': 'BTT', 
-                  'price':'0.482'
-                  },
-                                                            
-  ]
+  pairs:any[] = this.trendWatch.getTrendList();
 
-  constructor() { 
+  constructor(private trendWatch: TrendWatchService) { 
     
   }
+  public watchList:any[] = this.trendWatch.getWatchList();
+  public trendList:any[] = this.trendWatch.getTrendList();
 
   toggleMenu(){
     if(window.innerWidth > 800){
@@ -73,10 +34,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleMenu();
+    console.log(this.watchList)
   }
 
   async connectWallet(){
     console.log("s")
+  }
+
+  removeToken(event:any){
+    event.preventDefault();
+    let node:any = event.target.parentNode;
+    let num:number = parseInt(node.parentNode.id);
+
+    this.trendWatch.removeWatchListItem(num);
+    node.parentNode.parentNode.removeChild(node.parentNode);
+
   }
 
 }
