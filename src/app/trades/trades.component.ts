@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MetadataService } from '../services/metadata.service';
 
 @Component({
   selector: 'app-trades',
@@ -7,13 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TradesComponent implements OnInit {
 
-  @Input() trades:any[] = [];
-  public tradesArray:any[] = [];
+  trades:any = [];
 
-  constructor() { }
+  constructor(private tokenData:MetadataService) {
+    this.loadTrades();
+   }
 
-  ngOnChanges(){
-    this.tradesArray = this.trades
+  loadTrades(){
+    this.tokenData.getTrades().subscribe(data => {
+      this.trades = data;
+    })
   }
 
   ngOnInit(): void {

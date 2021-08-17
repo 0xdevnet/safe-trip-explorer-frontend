@@ -1,3 +1,15 @@
+<div [class.hide]="!isLoading" [class.load]="isLoading">
+  <div class="overlay">
+  
+  </div>
+  <div class="">
+    <h2 class="text-center load-text" style="font-size:30px;"> Loading..</h2>
+    <div class="loader">
+    
+    </div>
+  </div>
+</div>
+
 <mat-drawer-container>
   <mat-drawer mode="side" opened="true"
   [class.menu-open] = isMenuOpen 

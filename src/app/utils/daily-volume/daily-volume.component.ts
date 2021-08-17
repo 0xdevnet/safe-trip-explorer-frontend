@@ -58,7 +58,10 @@ export class DailyVolumeComponent implements OnInit {
       return day.timeInterval.day;
     })
     
-    this.lastestVolume = this.volume[this.volume.length - 1].tradeAmount;
+    if(this.volume.length){
+      this.lastestVolume = this.volume[this.volume.length - 1].tradeAmount;
+
+    }
   }
 
   ngOnInit() {

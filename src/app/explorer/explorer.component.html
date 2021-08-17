@@ -2,11 +2,11 @@
 
     <div class="col-md-12 mb-4">
         <div class="row ml-1 mr-1 box">
-            <div class="col-sm-8" style="padding:20px 20px;">
+            <div class="col-md-8" style="padding:20px 20px;">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row align-items-center">
-                            <img class="img-fluid img" width="70" height="70" src="https://safetrip.finance/wp-content/uploads/2021/06/SafeTrip.svg" alt="">
+                            <img class="img-fluid img mr-1" width="70" height="70" src="https://safetrip.finance/wp-content/uploads/2021/06/SafeTrip.svg" alt="">
                             <h1 class=" mt-3 mb-3 token text-secondary mx-auto" style="font-size:35px;overflow-wrap:anywhere;">
                                  {{tokens.pair_base_name}}/{{tokens.pair_quote_name}}
                             </h1>
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 d-flex flex-column justify-content-center" style="padding:20px 20px">
+            <div class="col-md-4 d-flex flex-column justify-content-center" style="padding:20px 20px">
                 <h4 class="text-white text-center ">
                     <img width="35" src="https://seeklogo.com/images/P/pancakeswap-cake-logo-855C872947-seeklogo.com.png"> PANCAKE TOOLS
                  </h4>
@@ -46,30 +46,9 @@
         <div class="row ml-1 mr-1" >
 
             <div class="box col-sm-12" style="padding:30px 20px;">
-                <div class="">
-                    <div class="row mt-3 mb-2">
-                        <div class="stats col-6">
-                            <p class="text-right text-white">Total Liquidity</p>
-                            <p class="text-right text-white">STF Holdings</p>
-                            <p class="text-right text-white">BUSD Holdings</p>
-                            <p class="text-right text-white">Diluted MarketCap </p>
-                            <p class="text-right text-white">Total Supply </p>
-                        </div>
-                        <div class="stats col-6">
-                            <p class="text-right text-white">$432,422,323</p>
-                            <p class="text-right text-white">$43,242</p>
-                            <p class="text-right text-white">$43,242</p>
-                            <p class="text-right text-white">$43,242</p>
-                            <p class="text-right text-white">50,000,000 STF</p>
-                        </div>
-                    </div>
-                    <hr style="border-color:white;">
-                    <app-daily-volume [volume] = "dailyVolume">
-                    </app-daily-volume>
-                    
-                </div>
-                <h4 class="text-center mt-2 text-white font-weight-bold">Daily Volume</h4>
-            </div>
+                <app-token-stats>
+                </app-token-stats>
+            </div> 
 
             <div class="box col-sm-12 mt-3 mb-3" style="padding:30px 20px;">
                 <h3 class="list">Sponsored Tokens</h3>
@@ -94,13 +73,7 @@
             <div class="box col-sm-12" style="padding:30px 20px">
                 <h1 class="token text-right">Safe Trip</h1>
                 <div id="chart">
-                    <canvas baseChart 
-                        [datasets]="lineChartData"
-                        [options]="lineChartOptions"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType">
-                    </canvas>
+                    <h2>big ass chart</h2>
                 </div>
             </div>
             
@@ -109,7 +82,7 @@
         <div class="row mt-3 ml-1 mr-1 justify-content-between">
             <div class="col-lg-12" style="padding:5px;">
                 <div class="box" style="padding:15px">
-                    <app-trades [trades] = "trades"></app-trades>
+                    <app-trades></app-trades>
                 </div>
             </div>
 

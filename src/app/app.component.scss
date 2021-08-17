@@ -1,4 +1,5 @@
 @import '../global.scss';
+@import '../loader.scss';
 :host {
     display: flex;
     flex-direction: column;
@@ -21,4 +22,32 @@
 
   .mat-drawer{
     background-color: $primary-darker !important;
+}
+
+.load-text{
+  position:absolute;
+  top:40%;
+  font-weight:bolder;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index: 95;
+  color:$secondary;
+}
+.overlay {
+  position: fixed;
+  width: 100%; 
+  height: 100%;
+  background-color: $primary-darker;
+  opacity:0.8;
+  z-index: 90; 
+  cursor: pointer; 
+}
+.load{
+  display:block;
+}
+.hide{
+  display:none;
+}
+.notifier__notification-message{
+  z-index:110;
 }

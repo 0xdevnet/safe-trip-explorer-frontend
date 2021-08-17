@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { MetadataService } from './services/metadata.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +10,18 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'safe-trip-frontend';
   isMenuOpen:boolean = false;
+  isLoading:any = true;
+
+  constructor(private data:MetadataService){
+    this.load();
+  }
+
+  load(){
+    this.data.getloading().subscribe(load => {
+      this.isLoading = load;
+    })
+  }
+
 
   toggleMenu(){
     this.isMenuOpen = !this.isMenuOpen;

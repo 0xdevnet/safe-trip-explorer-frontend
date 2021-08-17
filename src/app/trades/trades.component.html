@@ -11,7 +11,7 @@
             <th>Maker</th>
             <th>Tx Hash</th>
         </tr>
-        <tr *ngFor="let trade of tradesArray" >
+        <tr *ngFor="let trade of trades" >
             <td>{{trade.block.timestamp.time | date}}</td>
             <td><a href="https://bscscan.com/block/{{trade.block.height}}">{{trade.block.height}}</a></td>
             <td class="{{trade.side | buysell}}">{{trade.side}}</td>

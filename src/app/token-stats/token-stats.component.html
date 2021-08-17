@@ -1,0 +1,22 @@
+<div class="">
+    <div class="row mt-3 mb-2">
+        <div class="stats col-6">
+            <p>Total Liquidity</p>
+            <p>STF Holdings</p>
+            <p>BUSD Holdings</p>
+            <p>Diluted MarketCap </p>
+            <p>Total Supply </p>
+        </div>
+        <div class="stats col-6">
+            <p>$432,422,323</p>
+            <p>{{liquidity.balances[0].value}}</p>
+            <p>$43,242</p>
+            <p>$43,242</p>
+            <p>50,000,000 STF</p>
+        </div>
+    </div>
+    <hr style="border-color:white;">
+    <app-daily-volume [volume] = "volume">
+    </app-daily-volume>
+    
+</div>

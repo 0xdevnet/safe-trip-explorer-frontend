@@ -33,6 +33,7 @@ import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TradesComponent } from './trades/trades.component';
 import { BuysellPipe } from './utils/buysell.pipe';
+import { TokenStatsComponent } from './token-stats/token-stats.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -63,6 +64,7 @@ const customNotifierOptions: NotifierOptions = {
     TVchartComponent,
     TradesComponent,
     BuysellPipe,
+    TokenStatsComponent,
   ],
   imports: [
     BrowserModule,
