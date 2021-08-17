@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { Color } from 'ng2-charts';
 import { TrendWatchService } from '../services/trend-watch.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   public watchList:any[] = this.trendWatch.getWatchList();
   public trendList:any[] = this.trendWatch.getTrendList();
+  public sponsors:any[] = this.trendWatch.getSponsorsList();
 
   public lineChartData: ChartDataSets[] = [
     { data: [10, 20, 5, 25, 40 ,30, 23, 50, 30, 60, 65, 59, 80, 81, 56, 55, 40], label: 'Price' },
@@ -51,6 +52,7 @@ export class DashboardComponent implements OnInit {
   public lineChartPlugins = [];
 
   ngOnInit(): void {
+    console.log(this.sponsors);
     
   }
 

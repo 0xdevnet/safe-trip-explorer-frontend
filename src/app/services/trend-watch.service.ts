@@ -9,6 +9,27 @@ export class TrendWatchService {
     //this.watchList= JSON.parse(window.localStorage.getItem("watchlist") || '[]');
    }
 
+  private sponsorList:any[] = [
+    {
+      'name': 'MoonDoge',
+      'desc':'lorem DEFI INTELLIGENT AUTOMATION PLATFORM A multi-product ecosystem of the qpic crypto eco space like this is the shit',
+      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
+      'link' : 'https://google.com/'
+    },
+    {
+      'name': 'MoonDoge 2',
+      'desc':'lorem DEFI INTELLIGENT AUTOMATION PLATFORM A multi-product ecosystem of the qpic crypto eco space like this is the shit',
+      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
+      'link' : 'https://google.com/'
+    },
+    {
+      'name': 'MoonDoge 3',
+      'desc':'lorem SISIJISSIIISISISI crypto eco space like this is the shit',
+      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
+      'link' : 'https://google.com/'
+    },
+  ]
+
   private trendList:any[] = [
     {
       'id' : 0,
@@ -82,6 +103,10 @@ export class TrendWatchService {
 
   getWatchList(){
     return this.watchList;
+  }
+
+  getSponsorsList(){
+    return this.sponsorList;
   }
 
 }

@@ -9,42 +9,26 @@
                     <input class="form-control bg-secondary-light" 
                     placeholder="Search Name/Token Address"
                     type="text" name="search" id="token-search">
-                    <button type="button" class="btn btn-secondary">
+                    <button type="button" class="btn btn-secondary ml-2">
                         <i class="bi bi-search text-dark"></i>
                     </button>
                 </div>
                 
             </div>
+ 
+            <div class="box col-sm-12 mt-3 mb-3" style="padding:30px 20px;">
+                <h3 class="list">Sponsored Tokens</h3>
+                <div class="" style="">
+                    <div class="sponsor" *ngFor="let sponsor of sponsors;">
+                        <div class="d-flex align-self-center">
+                            <img width="35px" height="35px" src={{sponsor.logo_url}} alt="">
+                            <h2 class="text-primary-lighter font-weight-bolder ml-2">{{sponsor.name}}</h2>
+                        </div>
+                        <p class="text-white excerpt">{{sponsor.desc}}</p>
+                        <a class="btn-info btn btn-sm" href={{sponsor.link}}><span class="bi-eye"></span> More Details</a>
+                    </div>
 
-
-            <div class="box col-sm-12" style="padding:30px 20px;">
-                <div>
-                    <h1 class="text-left token">STF/BUSD</h1>
                 </div>
-                <div class="icons">
-                    <app-links
-                    
-                    ></app-links>
-                </div>
-                <div class="d-flex justify-content-start mt-3">
-                    <button class="btn btn-secondary btn-lg">
-                        Trade
-                    </button>
-                </div>
-                <div class="">
-                    <h1 class="text-right text-white font-weight-bolder">$43,242</h1>
-                    <app-daily-volume>
-                    </app-daily-volume>
-                    
-                </div>
-                <h4 class="text-center mt-2 text-white font-weight-bold">Daily Volume</h4>
-            </div>
-        </div>
-
-        <div class="row ml-1 mr-1 mt-3 d-md-block d-none">
-            <div class="box" style="padding:10px;">
-                <div class="cryptohopper-web-widget news"
-                data-id="5" data-news_length="20"></div>
             </div>
         </div>
     </div>

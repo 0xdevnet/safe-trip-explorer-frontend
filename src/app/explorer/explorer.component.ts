@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { createChart } from 'lightweight-charts';
+import { ActivatedRoute } from '@angular/router';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Color } from 'ng2-charts';
+import { TrendWatchService } from '../services/trend-watch.service';
+import { NotifierService } from 'angular-notifier';
+import { MetadataService } from '../services/metadata.service';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-explorer',
@@ -8,52 +14,100 @@ import { createChart } from 'lightweight-charts';
 })
 export class ExplorerComponent implements OnInit {
 
-  constructor() { }
+  private readonly notifier: NotifierService;
+  public address:string='0x6e49d16e53443c06b86a42c259227464b8987af0';
+  public tokens:any = "";
+  public dailyVolume:any[]=[];
+  public metadata:any = "";
+  public liquidity:any = "";
+  public trades:any = [];
+  public data:boolean = false;
+
+  public sponsors:any[] = this.trendWatch.getSponsorsList();
+
+  constructor(private route:ActivatedRoute, private trendWatch:TrendWatchService, notify:NotifierService, private tokenData:MetadataService,private clipboard:ClipboardService) { 
+    
+    this.route.params.subscribe(params => {
+      if(params.slug != ''){
+        this.address = params.slug;
+      }
+      this.getAllData();
+    })
+    
+    
+    this.notifier = notify;
+
+    this.clipboard.copyResponse$.subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.notifier.notify('success', "Copied To Clipboard");
+      }
+    });
+
+
+  }
+  
+  async getAllData(){
+    this.tokenData.getMetadata(this.address, (data:any) =>{
+      console.log("Loaded", this.address);
+      this.tokens = this.tokenData.tokens;
+      this.dailyVolume = this.tokenData.dailyVolume;
+      this.metadata = this.tokenData.liquidity;
+      this.liquidity = this.tokenData.dailyVolume;
+      this.trades = this.tokenData.trades;
+      this.data = true;
+
+    })
+  }
+
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [10, 20, 5, 25, 40 ,30, 23, 50, 30, 60, 65, 59, 80, 81, 56, 55, 40], label: 'Price' },
+  ];
+
+
+  public lineChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio:2,
+    scales: {
+      xAxes: [{
+      display:false,
+      gridLines: {
+        display:false,
+        }
+      }],
+      yAxes: [{
+        display:false,
+        gridLines: {
+          display:false,
+        }   
+      }]
+    }
+  };
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#FFF9D2',
+      backgroundColor: '#fff08e26',
+    },
+    
+  ];
+  public lineChartLegend = false;
+  public lineChartType: ChartType = 'line';
 
 
   ngOnInit(): void {
-    const box:any = document.getElementById('siksisk');
-    const chart = createChart(box, { width: 700, height: 300 });
-    const lineSeries = chart.addLineSeries();
-    lineSeries.setData([
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-    ]);
+    console.log(this.tokens)
 
-    lineSeries.applyOptions({
-      color: '#27AE60',
-      lineWidth: 2,
-    });
-    
-    chart.applyOptions({
-      layout: {
-        backgroundColor: 'rgb(0,0,0,0)',
-        textColor: '#d1d4dc',
-      },
-      rightPriceScale: {
-        borderVisible: false,
-      },
-      timeScale: {
-        borderVisible: false,
-      },
-      grid: {
-        vertLines: {
-          visible: false,
-        },
-        horzLines: {
-          visible: false,
-        },
-      }
-    });
-    
   }
+  copyContractAddress(){
+    this.clipboard.copy(this.tokens.pair_base_address);
+  }
+
+  copyPairAddress(){
+    this.clipboard.copy(this.tokens.pair_address);
+
+  }
+
+  
 
 }

@@ -3,9 +3,25 @@
 .main-explorer{
     margin:10px;
 }
+
 .token{
-    color:white;
-    font-weight:900;
-    font-size:30px;
-    text-transform: uppercase;
+color:white;
+font-weight:900;
+font-size:30px;
+text-transform: uppercase;
+}
+.link{
+color: $secondary;
+font-size:22px;
+}
+.list{
+color:white;
+font-size:30px;
+font-weight:600;
+padding:10px 0px;
+}
+
+.img{
+    border-radius:50%;
+    background-color:$primary-darker;
 }

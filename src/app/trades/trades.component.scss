@@ -1,0 +1,39 @@
+@import '../../global.scss';
+
+th{
+    font-weight:bold;
+    color:white;
+}
+tr{
+    color:white;
+}
+.table{
+    width:1000px;
+}
+.main{
+    height:600px !important;
+    overflow:scroll;
+}
+td{
+    a{
+        color:$secondary;
+        &:hover{
+            color:$secondary-dark;
+        }
+    }
+}
+
+
+.list{
+    color:white;
+    font-size:30px;
+    font-weight:600;
+    padding:10px 0px;
+}
+
+.buy{
+    color:rgb(0, 180, 0);
+}
+.sell{
+    color:rgb(252, 31, 31);
+}

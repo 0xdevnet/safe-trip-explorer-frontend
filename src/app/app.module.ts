@@ -23,8 +23,31 @@ import { DailyVolumeComponent } from './utils/daily-volume/daily-volume.componen
 //misc imports
 import { ChartsModule } from 'ng2-charts';
 import { LinksComponent } from './utils/links/links.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TVchartComponent } from './tvchart/tvchart.component';
 //service imports
 
+import { HttpClientModule } from '@angular/common/http';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { ClipboardModule } from 'ngx-clipboard';
+import { TradesComponent } from './trades/trades.component';
+import { BuysellPipe } from './utils/buysell.pipe';
+
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+		horizontal: {
+			position: 'right',
+			distance: 12
+		},
+		vertical: {
+			position: 'top',
+			distance: 12,
+			gap: 10
+		}
+  }
+}
 
 @NgModule({
   declarations: [
@@ -35,6 +58,11 @@ import { LinksComponent } from './utils/links/links.component';
     ExplorerComponent,
     DailyVolumeComponent,
     LinksComponent,
+    FooterComponent,
+    NotFoundComponent,
+    TVchartComponent,
+    TradesComponent,
+    BuysellPipe,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +77,9 @@ import { LinksComponent } from './utils/links/links.component';
     MatDividerModule,
     MatListModule,
     ChartsModule,
+    HttpClientModule,
+    NotifierModule.withConfig(customNotifierOptions),
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
