@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { MetadataService } from 'src/app/services/metadata.service';
 
 @Component({
   selector: 'app-daily-volume',
@@ -9,14 +10,16 @@ import { Color, Label } from 'ng2-charts';
 })
 export class DailyVolumeComponent implements OnInit {
 
+  @Input() volume:any[] = [];
+
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [], label: 'Daily Volume' },
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    aspectRatio:2,
+    aspectRatio:1.8,
     scales: {
       xAxes: [{
       display:false,
@@ -41,11 +44,25 @@ export class DailyVolumeComponent implements OnInit {
   ];
   public lineChartLegend = false;
   public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [];
+  public dailyVolume:any[] = [];
+  public lastestVolume:any = "";
 
-  constructor() { }
+  constructor() { 
+
+  }
+  ngOnChanges(){
+    this.lineChartData[0].data = this.volume.map(day => {
+      return day.tradeAmount;
+    })
+    this.lineChartLabels = this.volume.map(day => {
+      return day.timeInterval.day;
+    })
+    
+    this.lastestVolume = this.volume[this.volume.length - 1].tradeAmount;
+  }
 
   ngOnInit() {
+
   }
 
 }

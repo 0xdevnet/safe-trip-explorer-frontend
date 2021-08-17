@@ -2,11 +2,9 @@
 .icons{
     margin-right:10px;
     border-radius: 50%;
-    height:40px;
-    width:40px;
-    font-size:auto;
-    font-weight:800;
-    padding:5px;
+    height:30px;
+    padding:2px;
+    width:30px;
     background-color:white;
     &:hover{
         background-color:$secondary;
