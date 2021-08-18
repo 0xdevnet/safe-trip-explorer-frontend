@@ -1,14 +1,4 @@
-<div [class.hide]="!isLoading" [class.load]="isLoading">
-  <div class="overlay">
-  
-  </div>
-  <div class="">
-    <h2 class="text-center load-text" style="font-size:30px;"> Loading..</h2>
-    <div class="loader">
-    
-    </div>
-  </div>
-</div>
+
 
 <mat-drawer-container>
   <mat-drawer mode="side" opened="true"
@@ -18,6 +8,17 @@
     <app-sidebar></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
+    <div [class.hide]="!isLoading" [class.load]="isLoading">
+      <div class="overlay">
+      
+      </div>
+      <div class="">
+        <h2 class="text-center load-text" style="font-size:30px;"> Loading..</h2>
+        <div class="loader">
+        
+        </div>
+      </div>
+    </div>
     <app-header></app-header>
     <notifier-container></notifier-container>
     <router-outlet></router-outlet>

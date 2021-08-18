@@ -21,7 +21,7 @@ export class MetadataService {
   private metadata:any = new BehaviorSubject<any>([]);
   private liquidity:any = new BehaviorSubject<any>([]);
   private trades:any = new BehaviorSubject<any>([]);
-  private loading:any = new BehaviorSubject<boolean>(true);
+  private loading:any = new BehaviorSubject<boolean>(false);
 
   getloading(): Observable<boolean> {
     return this.loading.asObservable();

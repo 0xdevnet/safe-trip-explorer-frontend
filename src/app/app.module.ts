@@ -24,7 +24,7 @@ import { DailyVolumeComponent } from './utils/daily-volume/daily-volume.componen
 import { ChartsModule } from 'ng2-charts';
 import { LinksComponent } from './utils/links/links.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './utils/not-found/not-found.component';
 import { TVchartComponent } from './tvchart/tvchart.component';
 //service imports
 
@@ -34,6 +34,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { TradesComponent } from './trades/trades.component';
 import { BuysellPipe } from './utils/buysell.pipe';
 import { TokenStatsComponent } from './token-stats/token-stats.component';
+import { SponsorComponent } from './utils/sponsor/sponsor.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -65,6 +66,7 @@ const customNotifierOptions: NotifierOptions = {
     TradesComponent,
     BuysellPipe,
     TokenStatsComponent,
+    SponsorComponent,
   ],
   imports: [
     BrowserModule,

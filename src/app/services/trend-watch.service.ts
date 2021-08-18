@@ -1,112 +1,99 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { NotifierService } from 'angular-notifier';
+import { BehaviorSubject } from 'rxjs';
+
+
+let headers ={
+
+}
+let trendlist_url = environment.server_url + "api/tokens/trending/"
+let sponsoredlist_url = environment.server_url + "api/tokens/sponsored/"
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrendWatchService {
+  
+  private readonly notifier:NotifierService;
+  constructor(private http:HttpClient, private notify:NotifierService) {
+    this.notifier = notify;
+    this.watchList= JSON.parse(window.localStorage.getItem("watchlist") || '[]');
+    
+    this.http.get(trendlist_url,{headers, responseType:'json', observe:'body'})
+    .subscribe(
+      {
+        next: data=>{
+          this.setTrendList((data as any))
+          console.log(data)
+          
+        },
+        error:error=>{
+          this.notifier.notify('error', "There Has Been An Error While Fetching Trending Tokens")
+        }
+      }
+    )
+    this.http.get(sponsoredlist_url,{headers, responseType:'json', observe:'body'})
+    .subscribe(
+      {
+        next: data=>{
+          this.setSponsorList((data as any))
+        },
+        error:error=>{
+          this.notifier.notify('error', "There Has Been An Error While Fetching Sponsored Tokens")
+        }
+      }
+    )
 
-  constructor() {
-    //this.watchList= JSON.parse(window.localStorage.getItem("watchlist") || '[]');
    }
 
-  private sponsorList:any[] = [
-    {
-      'name': 'MoonDoge',
-      'desc':'lorem DEFI INTELLIGENT AUTOMATION PLATFORM A multi-product ecosystem of the qpic crypto eco space like this is the shit',
-      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
-      'link' : 'https://google.com/'
-    },
-    {
-      'name': 'MoonDoge 2',
-      'desc':'lorem DEFI INTELLIGENT AUTOMATION PLATFORM A multi-product ecosystem of the qpic crypto eco space like this is the shit',
-      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
-      'link' : 'https://google.com/'
-    },
-    {
-      'name': 'MoonDoge 3',
-      'desc':'lorem SISIJISSIIISISISI crypto eco space like this is the shit',
-      'logo_url' : 'https://image.pngaaa.com/186/326186-middle.png',
-      'link' : 'https://google.com/'
-    },
-  ]
-
-  private trendList:any[] = [
-    {
-      'id' : 0,
-      'name': 'MoonDoge',
-      'price':'0.482'
-    },
-    {
-      'id' : 1,
-      'name': 'Safe Trip',
-      'price':'0.482'
-    },
-    {
-      'id' : 2,
-      'name': 'Rockesd Token',
-      'price':'0.482'
-    },
-    {
-      'id' : 3,
-      'name': 'Shib Inu',
-      'price':'0.0000482'
-    },
-    {
-      'id' : 3,
-      'name': 'Shib Inu',
-      'price':'0.482'
-    },
-    {
-      'id' : 3,
-      'name': 'Shib Inu',
-      'price':'0.482'
-    },
-    {
-      'id' : 3,
-      'name': 'Shib Inu',
-      'price':'0.482'
-    },
+  private sponsorList:any = new BehaviorSubject<any>([]);
+  private trendList:any = new BehaviorSubject<any>([]);
+  private watchList:any = [
 
   ]
 
-  private watchList:any[] = [
-    {
-      'id' : 0,
-      'name' : 'sike',
-      'price' : '01.412'
-    },
-    {
-      'id' : 1,
-      'name' : 'Big Ass Name',
-      'price' : '2.87723'
-    },
-  ]
-
-  getTrendList():any{
-    return this.trendList;
+  getTrendList(){
+    return this.trendList.asObservable();
   }
 
-  setWatchList(){
-
+  setTrendList(answer:any){
+    this.trendList.next(answer);
   }
 
-  removeWatchListItem(id:number){
+  getSponsorList(){
+    return this.sponsorList.asObservable();
+  }
+  setSponsorList(answer:any){
+    this.sponsorList.next(answer);
+  }
+
+
+  setWatchList(addr:string, base_name:string, quote_name:string){
+    let obj={
+      "address":addr,
+      "base_name":base_name,
+      "quote_name":quote_name,
+    }
+    this.watchList[this.watchList.length] = obj;
+
+    window.localStorage.setItem("watchlist", JSON.stringify(this.watchList))
+  }
+
+  removeWatchListItem(addr:string){
     let i = 0;
     for(i=0;i<this.watchList.length;i++){
-      if(this.watchList[i].id === id){
-        console.log(id)
+      if(this.watchList[i].address === addr){
         this.watchList.splice(i, 1);
         break;
       }
     }
+    window.localStorage.setItem("watchlist", JSON.stringify(this.watchList))
   }
 
   getWatchList(){
     return this.watchList;
-  }
-
-  getSponsorsList(){
-    return this.sponsorList;
   }
 
 }

@@ -12,6 +12,7 @@
 html, body { 
     height: 100%;
     background-color: $dark !important;
+    scroll-behavior: smooth;
  }    
  .box{
     background: rgba( 71, 128, 132, 0.45 );
@@ -88,4 +89,17 @@ html, body {
   height:50px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.coming-soon{
+  filter: blur(15px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+}
+.coming{
+  margin-bottom:-30px;
+  color:$primary-dark !important;
+  z-index:10;
 }

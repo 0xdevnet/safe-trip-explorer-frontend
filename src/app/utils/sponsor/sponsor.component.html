@@ -1,0 +1,21 @@
+<h3 class="list">Sponsored Tokens</h3>
+<div class="" style="">
+    <div class="sponsor" *ngIf="sponsors.length == 0">
+        <div class="d-flex align-self-center">
+            <h2 class="text-primary-lighter font-weight-bolder ml-2">
+            Please contact us through our socials down below to get featured in this space.
+            </h2>
+        </div>
+    </div>
+    <div class="sponsor" *ngFor="let sponsor of sponsors;">
+        <div class="d-flex align-self-center">
+            <h2 class="text-primary-lighter font-weight-bolder ml-2">
+            {{sponsor.pair_base_name}}/{{sponsor.pair_quote_name}}
+            </h2>
+        </div>
+        <p class="text-white excerpt ml-2">{{sponsor.details}}</p>
+        <a class="btn-info btn btn-sm ml-2" href="explorer/{{sponsor.pair_address}}"><span class="bi-eye"></span> More Details</a>
+    </div>
+
+</div>
+

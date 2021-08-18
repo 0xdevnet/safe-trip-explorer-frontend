@@ -21,14 +21,6 @@
     id="dropdownMenuButton" data-toggle="dropdown">
       <span class="bi bi-caret-down-square-fill"></span>
     </button>
-
-    <button
-    [matMenuTriggerFor]="search"
-    #tooltip_search="matTooltip"
-    matTooltip="Search Tokens"
-    class="round btn btn-primary">
-    <span class="bi bi-search"></span> 
-  </button>
   
   <button
     [matMenuTriggerFor]="menu"
@@ -45,31 +37,24 @@
 
       <table class="table table-borderless data-justify data-container">
         <h2 class="text-center">Watchlist</h2>
-        <tr mat-menu-item *ngFor="let pair of watchList;let i = index" id={{pair.id}} (click)="$event.stopPropagation()">
+        <a href="/explorer/{{pair.address}}" mat-menu-item *ngFor="let pair of watchList;let i = index" id={{pair.address}} (click)="$event.stopPropagation()">
             <td style="font-size:20px;cursor:pointer;"><span (click)="removeToken($event)" class="bi-heart-fill text-danger"></span></td>
-            <td class="text-primary">{{pair.name | titlecase}}</td>
-            <td class="text-primary">{{pair.price}}</td>
-        </tr>
+            <td class="text-primary">{{pair.base_name}}/{{pair.quote_name}}</td>
+            <td class="text-primary">{{pair.address | slice:0:6}}</td>
+        </a>
       </table>
       <div mat-menu-item style="width:100%;" *ngIf="watchList.length == 0">
         <h4 class="text-center text-danger">Saved Tokens Will Appear Here.</h4>
       </div>
   </mat-menu>
 
-  <mat-menu #search="matMenu" >
-    <div mat-meu-item class="notification-container">
-      <input  (click)="$event.stopPropagation()" class="form-control ml-3 mr-3" 
-    type="search" style="width:auto;font-size:13px;" placeholder="Search Token/Paste Address" aria-label="Search">
-    </div>
-    
-    
-  </mat-menu>
 
 </nav>
 
 <div class="trend-wrapper d-flex flex-row flex-nowrap">
-  <div class="trending text-primary-lighter" *ngFor="let pair of pairs;let i = index">
-    <span class="text-white">#{{i+1}}</span> {{pair.name}} - {{pair.price}}
+  <div class="trending text-primary-lighter" *ngFor="let pair of trendList;let i = index">
+    <a href="/explorer/{{pair.pair_address}}" class="text-secondary" style="text-decoration: none;"><span class="text-white">#{{i+1}}</span>
+       {{pair.pair_base_name}}/{{pair.pair_quote_name}}</a>
   </div>
   
 </div>

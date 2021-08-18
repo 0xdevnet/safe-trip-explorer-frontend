@@ -16,9 +16,8 @@ export class ExplorerComponent implements OnInit {
   public address:string='0x6e49d16e53443c06b86a42c259227464b8987af0';
   public tokens:any = "";
   public metadata:any = "";
-  public sponsors:any[] = this.trendWatch.getSponsorsList();
 
-  constructor(private route:ActivatedRoute, private trendWatch:TrendWatchService, notify:NotifierService, private tokenData:MetadataService,private clipboard:ClipboardService) { 
+  constructor(private route:ActivatedRoute, notify:NotifierService, private tokenData:MetadataService,private clipboard:ClipboardService) { 
     
     this.route.params.subscribe(params => {
       if(params.slug != ''){

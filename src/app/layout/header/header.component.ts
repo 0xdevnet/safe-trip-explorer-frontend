@@ -18,10 +18,12 @@ export class HeaderComponent implements OnInit {
   pairs:any[] = this.trendWatch.getTrendList();
 
   constructor(private trendWatch: TrendWatchService) { 
-    
+    this.trendWatch.getTrendList().subscribe((data:any) => {
+      this.trendList = data;
+    })
   }
   public watchList:any[] = this.trendWatch.getWatchList();
-  public trendList:any[] = this.trendWatch.getTrendList();
+  public trendList:any[] = [];
 
   toggleMenu(){
     if(window.innerWidth > 800){
@@ -44,7 +46,7 @@ export class HeaderComponent implements OnInit {
   removeToken(event:any){
     event.preventDefault();
     let node:any = event.target.parentNode;
-    let num:number = parseInt(node.parentNode.id);
+    let num:string = node.parentNode.id
 
     this.trendWatch.removeWatchListItem(num);
     node.parentNode.parentNode.removeChild(node.parentNode);

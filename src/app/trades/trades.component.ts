@@ -16,8 +16,42 @@ export class TradesComponent implements OnInit {
 
   loadTrades(){
     this.tokenData.getTrades().subscribe(data => {
-      this.trades = data;
+      this.trades = data.map((data:any) => {
+  
+        var d = new Date(data.block.timestamp.time + " UTC")
+        let obj = {
+          "date" : d.toLocaleString(),
+          "block" : data.block.height,
+          "type" : "",
+          "usd" : data.tradeAmount,
+          "buyOrSell": 0,
+          "buySymbol":data.buyCurrency.symbol,
+          "sellSymbol":data.sellCurrency.symbol,
+          "price" : 0,
+          "buy" : "",
+          "sell" : "",
+          "maker" : data.taker.address,
+          "hash" : data.transaction.hash,
+        }
+        if(data.side == "SELL"){
+          obj.type = "SELL";
+          obj.price = (data.price),
+          obj.buyOrSell = 0;
+          obj.buy = data.buyAmount;
+          obj.sell = data.sellAmount;
+        }
+        else{
+          obj.type = "BUY";
+          obj.price = 1/parseFloat(data.price),
+          obj.buyOrSell = 1;
+          obj.buy = data.sellAmount;
+          obj.sell = data.buyAmount;
+        }
+        return obj;
+      })
     })
+
+    
   }
 
   ngOnInit(): void {

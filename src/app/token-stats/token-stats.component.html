@@ -1,21 +1,34 @@
 <div class="">
     <div class="row mt-3 mb-2">
-        <div class="stats col-6">
-            <p>Total Liquidity</p>
-            <p>STF Holdings</p>
-            <p>BUSD Holdings</p>
-            <p>Diluted MarketCap </p>
-            <p>Total Supply </p>
+        <div class="stats col-12">
+            <a class="btn btn-secondary" target="_blank"
+            href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{tokens.pair_base_address}}"
+            ><span class="bi-arrow-down-up"></span> Trade</a>
+            <button class="btn ml-3" [class.btn-danger]="isSaved" [class.btn-outline-danger]="!isSaved" (click)="saveToken()"><span class="bi-heart-fill"></span></button>
         </div>
-        <div class="stats col-6">
-            <p>$432,422,323</p>
-            <p>{{liquidity.balances[0].value}}</p>
-            <p>$43,242</p>
-            <p>$43,242</p>
-            <p>50,000,000 STF</p>
+        <div class="table stats mt-3 table-borderless">
+            <tr>
+                <td>Total Liquidity</td>
+                <td>$87,000</td>
+            </tr>
+            <tr>
+                <td>{{liquidity.balances[0].currency.symbol}} Holdings</td>
+                <td>{{liquidity.balances[0].value | number:'0.1-2'}}</td>
+            </tr>
+            <tr>
+                <td>{{liquidity.balances[1].currency.symbol}} Holdings</td>
+                <td>{{liquidity.balances[1].value | number:'0.1-2'}}</td>
+            </tr>
+            <tr>
+                <td>Diluted MarketCap</td>
+                <td>$43,242</td>
+            </tr>
+            <tr>
+                <td>Total Supply </td>
+                <td>50,000,000 STF</td>
+            </tr>
         </div>
     </div>
-    <hr style="border-color:white;">
     <app-daily-volume [volume] = "volume">
     </app-daily-volume>
     
