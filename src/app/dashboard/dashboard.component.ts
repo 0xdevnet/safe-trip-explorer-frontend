@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color } from 'ng2-charts';
+import { Color,Label } from 'ng2-charts';
+import { OhlcService } from '../services/ohlc.service';
 import { TrendWatchService } from '../services/trend-watch.service';
 
 @Component({
@@ -10,19 +11,56 @@ import { TrendWatchService } from '../services/trend-watch.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private trendWatch:TrendWatchService) { 
+
+  constructor(private trendWatch:TrendWatchService, private ohlc:OhlcService) { 
     this.trendWatch.getTrendList().subscribe((data:any) => {
       this.trendList = data;
     })
+
+    
+    this.ohlc.getDashboardOHLCAPI()
+    .subscribe(
+      {
+        next: next=>{
+          this.lineChartData[0].data = (next as any).data.map((data:any) =>{
+            return data.close
+          })
+          this.lineChartLabels = (next as any).data.map((data:any) =>{
+            return data.timeInterval.minute
+          })
+          let len = this.lineChartData[0].data?.length || 0;
+          if(len){
+            this.latestPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 1] : 0
+            this.secondPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 2] : 0
+
+            this.secondPrice = ((this.latestPrice - this.secondPrice)/this.secondPrice)*100
+            console.log(this.secondPrice)
+            if(this.secondPrice >= 0){
+              this.upordown = 1
+            }
+            else{
+              this.upordown = 0
+            }
+          }
+
+        },
+        error: error =>{
+          console.error("ERROR, OHLC Daily data error")
+        }
+      }
+    )
   }
 
   public watchList:any[] = this.trendWatch.getWatchList();
   public trendList:any[] = [];
+  public latestPrice:any="";
+  public secondPrice:any;
+  public upordown:any
 
   public lineChartData: ChartDataSets[] = [
-    { data: [10, 20, 5, 25, 40 ,30, 23, 50, 30, 60, 65, 59, 80, 81, 56, 55, 40], label: 'Price' },
+    { data: [], label: 'Price' },
   ];
-
+  public lineChartLabels: Label[] = [];
 
   public lineChartOptions: ChartOptions = {
     responsive: true,
@@ -52,7 +90,6 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChartLegend = false;
   public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [];
 
   ngOnInit(): void {
     

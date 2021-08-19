@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 
 //Material Imports
@@ -35,6 +36,8 @@ import { TradesComponent } from './trades/trades.component';
 import { BuysellPipe } from './utils/buysell.pipe';
 import { TokenStatsComponent } from './token-stats/token-stats.component';
 import { SponsorComponent } from './utils/sponsor/sponsor.component';
+import { SearchComponent } from './utils/search/search.component';
+import { DialogBodyComponent } from './utils/search/dialog-body/dialog-body.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -67,6 +70,8 @@ const customNotifierOptions: NotifierOptions = {
     BuysellPipe,
     TokenStatsComponent,
     SponsorComponent,
+    SearchComponent,
+    DialogBodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,8 +89,9 @@ const customNotifierOptions: NotifierOptions = {
     HttpClientModule,
     NotifierModule.withConfig(customNotifierOptions),
     ClipboardModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

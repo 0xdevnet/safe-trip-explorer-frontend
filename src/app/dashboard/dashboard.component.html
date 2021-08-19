@@ -2,16 +2,8 @@
     <div class="col-md-4 mb-4">
         <div class="row ml-1 mr-1" >
             <div class="box col-sm-12 mb-3" style="padding:30px 20px;">
-                <h2 class="text-white text-center font-weight-bolder">
-                   <img width="35" src="https://seeklogo.com/images/P/pancakeswap-cake-logo-855C872947-seeklogo.com.png"> PANCAKE TOOLS
-                </h2>
-                <div class="form-outline d-flex">
-                    <input class="form-control bg-secondary-light" 
-                    placeholder="Search Name/Token Address"
-                    type="text" name="search" id="token-search">
-                    <button type="button" class="btn btn-secondary ml-2">
-                        <i class="bi bi-search text-dark"></i>
-                    </button>
+                <div class="form-outline d-flex justify-content-center">
+                    <app-search></app-search>
                 </div>
 
                 <hr>
@@ -43,15 +35,24 @@
     <div class="col-md-8 mb-4">
         <div class="row ml-1 mr-1" >
             <div class="box col-sm-12" style="padding:30px 20px">
-                <h1 class="token text-right">Safe Trip</h1>
+                <h1 class="token text-right">Safe Trip Finance</h1>
+                <div class="d-flex justify-content-end">
+                    <h2 class="text-right text-danger" *ngIf="!upordown">
+                        <span class="bi bi-arrow-down-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
+                    </h2>
+                    <h2 class="text-right text-success" *ngIf="upordown">
+                        <span class="bi bi-arrow-up-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
+                    </h2>
+                    <h1 class="ml-2 token text-right text-secondary">{{latestPrice | slice:0:8}}</h1>
+                </div>
                 <div id="chart">
                     <canvas baseChart 
                         [datasets]="lineChartData"
                         [options]="lineChartOptions"
+                        [labels]="lineChartLabels"
                         [colors]="lineChartColors"
                         [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        [plugins]="lineChartPlugins">
+                        [chartType]="lineChartType">
                     </canvas>
                 </div>
             </div>
@@ -66,7 +67,6 @@
                         <tr class="thead">
                             <th>#</th>
                             <th>Name</th>
-                            <th>Price</th>
                         </tr>
                         <tr *ngFor="let pair of trendList;let i = index">
                             <td class="text-secondary">#{{i+1}}</td>
@@ -75,7 +75,6 @@
                                     {{pair.pair_base_name}}/{{pair.pair_quote_name}}
                                 </a>
                             </td>
-                            <td class="text-white">{{pair.address}}</td>
                         </tr>
                     </table>
                     <div class="text-center" style="width:100%;" *ngIf="trendList.length == 0">
@@ -92,12 +91,12 @@
                         <tr class="thead">
                             <th><span class="bi-heart text-white"></span></th>
                             <th>Name</th>
-                            <th>Price</th>
+                            <th>Link</th>
                         </tr>
                         <tr *ngFor="let pair of watchList;let i = index" id={{pair.address}}>
                             <td class="text-secondary" style="font-size:20px;cursor:pointer;"><span (click)="removeToken($event)" class="bi-heart-fill text-danger"></span></td>
                             <td class="text-white">{{pair.base_name}}/{{pair.quote_name}}</td>
-                            <td class="text-white">{{pair.address | slice:0:6}}</td>
+                            <td class="text-white"><a class="text-secondary" href="/explorer/{{pair.address}}">{{pair.address | slice:0:6}}</a></td>
 
                             
                         </tr>

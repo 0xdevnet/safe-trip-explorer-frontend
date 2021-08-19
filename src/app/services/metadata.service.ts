@@ -69,7 +69,6 @@ export class MetadataService {
   
   setAddress(address:string){
     this.address = address;
-    console.log(this.address);
     this.getDataAPI();
   }
 
