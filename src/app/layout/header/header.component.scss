@@ -10,9 +10,9 @@
 .nav-link{
     font-weight:500;
     margin-left:12px;
-    color:$primary-lighter;
+    color:$secondary !important;
     &:hover{
-        color:$primary;
+        color:$secondary-dark;
     }
 }
 .name{

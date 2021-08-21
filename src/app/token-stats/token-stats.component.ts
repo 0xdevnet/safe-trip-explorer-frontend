@@ -31,7 +31,6 @@ export class TokenStatsComponent implements OnInit {
 
   checkSavedToken(){
     let tokens:any = this.trendWatch.getWatchList();
-    console.log(tokens)
     for(var i=0;i<tokens.length;i++){
       if(tokens[i].address == this.tokenData.address){
         this.isSaved = true;

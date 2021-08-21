@@ -2,14 +2,14 @@
 <div class="" style="">
     <div class="sponsor" *ngIf="sponsors.length == 0">
         <div class="d-flex align-self-center">
-            <h2 class="text-primary-lighter font-weight-bolder ml-2">
+            <h4 class="text-white ml-2 text-center">
             Please contact us through our socials down below to get featured in this space.
-            </h2>
+            </h4>
         </div>
     </div>
     <div class="sponsor" *ngFor="let sponsor of sponsors;">
         <div class="d-flex align-self-center">
-            <h2 class="text-primary-lighter font-weight-bolder ml-2">
+            <h2 class="text-secondary font-weight-bolder ml-2">
             {{sponsor.pair_base_name}}/{{sponsor.pair_quote_name}}
             </h2>
         </div>

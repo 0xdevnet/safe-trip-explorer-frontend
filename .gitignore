@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+/src/assets/datafeeds/
+/src/assets/charting_library/
+
 # compiled output
 /dist
 /tmp
