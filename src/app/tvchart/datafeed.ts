@@ -1,14 +1,14 @@
 import axios from 'axios'; 
 import { environment } from 'src/environments/environment';
 
-const lastBarsCache = new Map(); 
+let recentBars:any=[];
 const configurationData = {
     supported_resolutions: ['1','5','15','30', '60','240','1D', '1W', '1M']
 }; 
 
 let symbolData:any = {}
     
-export default {
+const datafeed = {
     storeVars: (params:any) =>{
         symbolData = params
     },
@@ -26,7 +26,7 @@ export default {
                 session: '24x7',
                 timezone: 'UTC',
                 minmov: 1,
-                pricescale: 10000000,
+                pricescale: 100000000,
                 has_intraday: true,
                 intraday_multipliers: ['1', '5', '15', '30', '60'],
                 has_empty_bars: true,
@@ -42,7 +42,7 @@ export default {
     // This method is used by the charting library to get historical data for the symbol. 
     getBars: async(symbolInfo:any, resolution:any,periodParams:any, onHistoryCallback:any, onErrorCallback:any) =>{
             try{
-                console.log(periodParams)
+                
                 let params = {
                     'resolution' : resolution,
                     'count' : periodParams.countBack,
@@ -63,6 +63,9 @@ export default {
                 }))
     
                 if (bars.length){
+                    if(periodParams.firstDataRequest){
+                        recentBars = bars.slice(-10)
+                    }
                     console.log("callback-onhistory with data")
                     onHistoryCallback(bars, {noData: false}); 
                 }else{
@@ -71,7 +74,7 @@ export default {
             }
             catch(error){
                 console.error(error)
-                onErrorCallback();  //prevent infinite loop in development
+                //onErrorCallback();  //prevent infinite loop in development
             }
 
     },
@@ -79,3 +82,5 @@ export default {
     unsubscribeBars: (subscribeID:any)=>{},
     searchSymbols: (userInput: string, exchange: string, symbolType: string, onResult: any)=>{}
 };
+
+export {datafeed, recentBars}

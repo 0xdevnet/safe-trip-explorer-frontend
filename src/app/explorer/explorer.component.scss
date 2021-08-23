@@ -25,3 +25,16 @@ padding:10px 0px;
     border-radius:50%;
     background-color:$primary-darker;
 }
+.sponsor-mobile-display{
+    display:none;
+}
+
+@media screen and (max-width:800px) {
+    .sponsor-mobile{
+        display:none;
+    }
+    .sponsor-mobile-display{
+        display:block;
+    }
+
+}

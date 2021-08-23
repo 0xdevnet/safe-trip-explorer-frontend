@@ -8,8 +8,7 @@
         type="text" [(ngModel)]="value" required>
     </div>
     <div>
-        <button type="button" (click)="searchToken(content)" 
-        data-toggle="modal" data-target="#exampleModal"
+        <button type="button" (click)="searchToken(content)"
         class="btn btn-secondary ml-2">
             <i class="bi bi-search text-dark"></i>
         </button>
@@ -25,7 +24,7 @@
     </div>
     <div class="modal-body bg-primary-dark">
         <div class="loader d-flex justify-content-center">
-            <div class="spinner-border mt-5 mb-5" role="status" *ngIf="isLoading">
+            <div class="spinner-border text-white mt-5 mb-5" role="status" *ngIf="isLoading">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>

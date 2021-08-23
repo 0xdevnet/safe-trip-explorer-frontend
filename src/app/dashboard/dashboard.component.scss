@@ -19,3 +19,17 @@ font-size:30px;
 font-weight:600;
 padding:10px 0px;
 }
+
+.sponsor-mobile-display{
+    display:none;
+}
+
+@media screen and (max-width:800px) {
+    .sponsor-mobile{
+        display:none;
+    }
+    .sponsor-mobile-display{
+        display:block;
+    }
+
+}

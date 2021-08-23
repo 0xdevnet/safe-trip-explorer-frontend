@@ -9,11 +9,9 @@
 
     <div class="center" [class.dropdown] = !isMenuDropdown>
       <div [class.center] = isMenuDropdown [class.dropdown-menu] = !isMenuDropdown>
-        <a class="nav-link " href="#">💯 Top 100</a>
-        <a class="nav-link" href="#">🚀 Trending</a>
-        <a class="nav-link" href="#">🔥 Newly Added</a>
+        <a class="nav-link" href="/newly-added">🔥 Newly Added</a>
       </div>
-    </div> 
+    </div>
 
     <button class="round btn btn-primary-lighter" [class.hidebtn] = isMenuDropdown
     #tooltip_menuu="matTooltip"
@@ -29,6 +27,14 @@
     class="round btn btn-primary-lighter">
     <span class="bi bi-eye-fill"></span> 
   </button>
+  <button
+    [matMenuTriggerFor]="links"
+    #tooltip_menu="matTooltip"
+    matTooltip="Socials"
+    class="round btn btn-primary-lighter">
+    <span class="bi bi-link"></span> 
+  </button>
+
 
   </div>
   
@@ -46,6 +52,24 @@
       <div mat-menu-item style="width:100%;" *ngIf="watchList.length == 0">
         <h4 class="text-center text-danger">Saved Tokens Will Appear Here.</h4>
       </div>
+  </mat-menu>
+  <mat-menu #links="matMenu" >
+
+    <div class="d-flex flex-column align-items-start data-container links" style="padding:10px 20px;">
+      <h2 class="text-center">Social Links</h2>
+      <a class="text-primary" href="">
+        <span class="bi-globe"> Main Site</span>
+      </a>
+      <a class="text-primary" href="https://www.instagram.com/safetripfinance/">
+        <span class="bi-instagram"> Instagram</span>
+      </a>
+      <a class="text-primary" href="https://t.me/SafetripfinanceChat">
+        <span class="bi-telegram"> Telegram</span>
+      </a>
+      <a class="text-primary" href="https://twitter.com/safetripfinance">
+        <span class="bi-twitter"> Twitter</span>
+      </a>
+    </div>
   </mat-menu>
 
 

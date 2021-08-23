@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-search',
@@ -11,12 +12,15 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private http:HttpClient,private modalService: NgbModal, private router:Router) { }
+  constructor(private http:HttpClient,private modalService: NgbModal, private router:Router,notify:NotifierService) {
+    this.notifier = notify;
+   }
   public url:string = environment.server_url + "api/tokens/search/";
   value:string = "";
   result:any=[];
   isLoading:any = true;
   modal:any = "";
+  private readonly notifier: NotifierService;
 
   ngOnInit(): void {
   }
@@ -34,11 +38,8 @@ export class SearchComponent implements OnInit {
     if(this.value == ""){
       return;
     }
-    this.modal = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log("open modal")
-    }, (reason) => {
-      console.log(reason)
-    });
+    this.isLoading = true;
+    this.modal = this.modalService.open(content)
     let params = new HttpParams().set("value",this.value)
     this.http.get(this.url, {headers: {}, params: params})
     .subscribe({
@@ -48,14 +49,9 @@ export class SearchComponent implements OnInit {
         this.isLoading = false;
       },
       error:error=>{
-
+        this.notifier.notify("error", "There Has Been An Error! Please Try Again Later")
       }
     }) 
-
-
-
-
-
 
   }
 

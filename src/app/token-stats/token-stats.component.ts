@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NotifierService } from 'angular-notifier';
+import axios from 'axios';
+import { environment } from 'src/environments/environment';
 import { MetadataService } from '../services/metadata.service';
 import { TrendWatchService } from '../services/trend-watch.service';
 
@@ -9,24 +13,87 @@ import { TrendWatchService } from '../services/trend-watch.service';
 })
 export class TokenStatsComponent implements OnInit {
 
+  @Input() coinData:any;
+  @Input() coinLoaded:any;
+
   volume:any = [];
   liquidity:any = [];
   isSaved:any = false;
   public tokens:any = "";
-  constructor(private tokenData:MetadataService, private trendWatch:TrendWatchService) { 
+  modal:any="";
+  details:any = [];
+
+  private tokenSub:any;
+  private readonly notifier:NotifierService;
+  latestPrice:any = ""
+  hourlyChange:any;
+  dailyChange:any;
+  upordown:boolean = true
+  truncatePrice:boolean = false;
+  totalSupply:any = "???"
+  pancakeLoaded:boolean = false;
+  pancakeBase:any=""
+  pancakeQuote:any=""
+  totalLiquidity:any="???"
+
+  constructor(
+    private tokenData:MetadataService, 
+    private trendWatch:TrendWatchService, 
+    private modalService:NgbModal,
+    private notify:NotifierService) { 
+
+    this.notifier = notify;
     this.loadVolume();
-    this.loadLiquidity();
-    this.tokenData.getTokens().subscribe(data =>{
-      this.tokens = data;
-      this.checkSavedToken()
+    this.tokenSub = this.tokenData.getTokens().subscribe(data =>{
+        this.tokens = data;
+        this.checkSavedToken()
+        this.getLatestPrice()
+        this.loadLiquidity();
+    })
+    this.tokenData.getMetadata().subscribe(data =>{
+      this.details = data
+
     })
     
   }
 
   async resolveLiquidity(){
-    console.log("asdasd")
     let pancake_url = "https://api.pancakeswap.info/api/v2/tokens/"
 
+    try{
+      const baseRes = await axios.get(pancake_url+this.tokens.pair_base_address)
+      const quoteRes = await axios.get(pancake_url+this.tokens.pair_quote_address)
+      this.pancakeLoaded = true;
+      this.pancakeBase = Number(baseRes.data.data.price)
+      this.pancakeQuote = Number(quoteRes.data.data.price)
+
+      this.pancakeBase = this.pancakeBase < 0.0000001 ? this.pancakeBase : this.pancakeBase.toFixed(6)
+      this.pancakeQuote = this.pancakeQuote < 0.0000001 ? this.pancakeQuote : this.pancakeQuote.toFixed(6)
+    }
+    catch(error){
+      this.pancakeLoaded = false;
+      this.notifier.notify("error", "Could Not Fetch Recent Prices")
+    }
+
+
+    let a,b;
+    console.log(this.liquidity)
+    if(this.liquidity.balances[0].currency.address === this.tokens.pair_base_address){
+      a = (this.pancakeBase * this.liquidity.balances[0].value)
+      console.log(this.liquidity.balances[0].value)
+    }
+    if(this.liquidity.balances[1].currency.address === this.tokens.pair_quote_address){
+      b = (this.pancakeQuote * this.liquidity.balances[1].value)
+    }
+    console.log(a, b)
+    
+
+
+
+  }
+
+  openAdditionalInfo(info:any){
+    this.modal = this.modalService.open(info,{ size: 'lg' });
   }
 
   checkSavedToken(){
@@ -40,10 +107,12 @@ export class TokenStatsComponent implements OnInit {
 
   saveToken(){
     if(this.isSaved == false){
+      this.notifier.notify('success', "Token Added To Watchlist")
       this.trendWatch.setWatchList(this.tokens.pair_address, this.tokens.pair_base_name,this.tokens.pair_quote_name)
       this.isSaved = true;
     }
     else{
+      this.notifier.notify('warning', "Token Removed From Watchlist")
       this.trendWatch.removeWatchListItem(this.tokens.pair_address)
       this.isSaved = false;
     }
@@ -61,7 +130,36 @@ export class TokenStatsComponent implements OnInit {
     })
   }
 
+  async getLatestPrice(){
+    try{
+      let params = {
+        'resolution' : 60,
+        'count' : 10,
+        'till': Math.round(Date.now() / 1000),
+        'base' : this.tokens.pair_base_address,
+        'quote' : this.tokens.pair_quote_address
+      }
+      const url = environment.server_url + "api/tokens/chartdata/"
+      const response2 = await axios.get(url, {params:params})
+
+      let data = response2.data.data;
+      this.latestPrice = Number(data[data.length - 1].close)
+      let lastclose = Number((data[data.length - 2].close))
+      this.hourlyChange = ((this.latestPrice - lastclose)/lastclose)*100
+      this.upordown = this.hourlyChange >=0 ? true : false
+
+      this.truncatePrice = this.latestPrice < 0.0000001 ? true : false
+      this.resolveLiquidity()
+    }
+    catch(error){
+    }
+      
+  }
+
   ngOnInit(): void {
+  }
+  ngOnDestroy(){
+    this.tokenSub.unsubscribe();
   }
 
 }

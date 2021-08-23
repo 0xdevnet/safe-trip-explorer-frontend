@@ -4,6 +4,7 @@ import { TrendWatchService } from '../services/trend-watch.service';
 import { NotifierService } from 'angular-notifier';
 import { MetadataService } from '../services/metadata.service';
 import { ClipboardService } from 'ngx-clipboard';
+import { CoinGeckoService } from '../services/coin-gecko.service';
 
 @Component({
   selector: 'app-explorer',
@@ -16,8 +17,18 @@ export class ExplorerComponent implements OnInit {
   public address:string='0x6e49d16e53443c06b86a42c259227464b8987af0';
   public tokens:any = "";
   public metadata:any = "";
+  public coinData:any;
+  public coinLoaded:boolean = false;
 
-  constructor(private route:ActivatedRoute, notify:NotifierService, private tokenData:MetadataService,private clipboard:ClipboardService) { 
+  private sub1:any;
+  private sub2:any;
+  private sub3:any;
+
+  constructor(private route:ActivatedRoute, 
+    notify:NotifierService, 
+    private tokenData:MetadataService,
+    private clipboard:ClipboardService,
+    private coinGecko:CoinGeckoService) { 
     
     this.route.params.subscribe(params => {
       if(params.slug != ''){
@@ -30,7 +41,7 @@ export class ExplorerComponent implements OnInit {
     this.loadTokens();
     this.loadMetadata();
 
-    this.clipboard.copyResponse$.subscribe((res: any) => {
+    this.sub1 = this.clipboard.copyResponse$.subscribe((res: any) => {
       if (res.isSuccess) {
         this.notifier.notify('success', "Copied To Clipboard");
       }
@@ -38,13 +49,22 @@ export class ExplorerComponent implements OnInit {
   }
 
   loadTokens(){
-    this.tokenData.getTokens().subscribe(data =>{
+    this.sub2 = this.tokenData.getTokens().subscribe(data =>{
       this.tokens = data;
+      this.coinGecko.getInfo(this.tokens.pair_base_address).subscribe({
+        next:next=>{
+          this.coinData = next
+          this.coinLoaded = true;
+        },
+        error:error=>{
+          this.coinLoaded = false;
+        }
+      })
     })
   }
 
   loadMetadata(){
-    this.tokenData.getMetadata().subscribe(data =>{
+    this.sub3 = this.tokenData.getMetadata().subscribe(data =>{
       this.metadata = data;
     })
   }
@@ -62,6 +82,11 @@ export class ExplorerComponent implements OnInit {
 
   }
 
+  ngOnDestroy(){
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
+    this.sub3.unsubscribe();
+  }
   
 
 }

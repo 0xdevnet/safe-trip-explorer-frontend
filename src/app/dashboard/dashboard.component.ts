@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color,Label } from 'ng2-charts';
+import { MetadataService } from '../services/metadata.service';
 import { OhlcService } from '../services/ohlc.service';
 import { TrendWatchService } from '../services/trend-watch.service';
 
@@ -12,11 +13,13 @@ import { TrendWatchService } from '../services/trend-watch.service';
 export class DashboardComponent implements OnInit {
 
 
-  constructor(private trendWatch:TrendWatchService, private ohlc:OhlcService) { 
+  constructor(private trendWatch:TrendWatchService, private ohlc:OhlcService, private meta:MetadataService) { 
     this.trendWatch.getTrendList().subscribe((data:any) => {
       this.trendList = data;
     })
 
+    //prevent loading on dashboard
+    this.meta.setLoading(false);
     
     this.ohlc.getDashboardOHLCAPI()
     .subscribe(

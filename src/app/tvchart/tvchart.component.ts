@@ -6,7 +6,8 @@ import {
     ResolutionString,
 } from '../../assets/charting_library';
 import { MetadataService } from '../services/metadata.service';
-import datafeed from './datafeed';
+import { OhlcService } from '../services/ohlc.service';
+import {datafeed, recentBars} from './datafeed';
 
 
 @Component({
@@ -16,7 +17,7 @@ import datafeed from './datafeed';
 })
 export class TVchartComponent implements OnInit {
 
-  constructor(private data:MetadataService) { }
+  constructor(private data:MetadataService, private ohlc:OhlcService) { }
 
     private _symbol: ChartingLibraryWidgetOptions['symbol'] = 'AAPL';
     private _interval: ChartingLibraryWidgetOptions['interval'] = '60' as ResolutionString;
@@ -41,7 +42,6 @@ export class TVchartComponent implements OnInit {
                 })
             }
         })
-
     }
 
     renderChart() {
@@ -71,6 +71,7 @@ export class TVchartComponent implements OnInit {
         tvWidget.onChartReady(() => {
             tvWidget.headerReady().then(() => {
                 console.log("Chart Ready!")
+                this.ohlc.setBars(recentBars)
             });
         });
     }

@@ -26,7 +26,6 @@ export class TrendWatchService {
       {
         next: data=>{
           this.setTrendList((data as any))
-          console.log(data)
           
         },
         error:error=>{

@@ -6,6 +6,9 @@ th{
 }
 tr{
     color:white;
+    &:hover{
+        background-color:$primary;
+    }
 }
 .table{
     width:max-content;

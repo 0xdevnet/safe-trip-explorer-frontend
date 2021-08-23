@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleMenu();
-    console.log(this.watchList)
   }
 
   async connectWallet(){

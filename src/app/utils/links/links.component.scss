@@ -5,9 +5,9 @@
     height:30px;
     padding:2px;
     width:30px;
-    background-color:white;
+    background-color:rgb(238, 238, 238);
     &:hover{
-        background-color:$secondary;
+        background-color:$secondary-dark;
     }
 
 }

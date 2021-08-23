@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-links',
@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class LinksComponent implements OnInit {
 
   constructor() { }
+  @Input() data:any;
+  @Input() tokens:any;
+  @Input() coinLoaded:boolean = false;
 
   ngOnInit(): void {
+
   }
 
 }

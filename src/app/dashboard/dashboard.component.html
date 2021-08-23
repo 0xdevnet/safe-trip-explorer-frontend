@@ -25,7 +25,7 @@
                 
             </div>
  
-            <div class="box col-sm-12 mt-3 mb-3" style="padding:30px 20px;">
+            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 20px;">
                 <app-sponsor></app-sponsor>
             </div>
         </div>
@@ -67,6 +67,7 @@
                         <tr class="thead">
                             <th>#</th>
                             <th>Name</th>
+                            <th>Link</th>
                         </tr>
                         <tr *ngFor="let pair of trendList;let i = index">
                             <td class="text-secondary">#{{i+1}}</td>
@@ -75,6 +76,7 @@
                                     {{pair.pair_base_name}}/{{pair.pair_quote_name}}
                                 </a>
                             </td>
+                            <td class="text-white"><a class="text-secondary" href="/explorer/{{pair.address}}">{{pair.pair_address | slice:0:6}}</a></td>
                         </tr>
                     </table>
                     <div class="text-center" style="width:100%;" *ngIf="trendList.length == 0">
@@ -105,6 +107,9 @@
                         <h4 class="text-center text-white">Saved Tokens Will Appear Here.</h4>
                     </div>
                 </div>
+            </div>
+            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile-display" style="padding:30px 20px;">
+                <app-sponsor></app-sponsor>
             </div>
 
         </div>

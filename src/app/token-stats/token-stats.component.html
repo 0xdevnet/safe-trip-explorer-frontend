@@ -1,15 +1,54 @@
 <div class="">
-    <div class="row mt-3 mb-2">
+    <div class="row mt-1 mb-2">
+        
+        <div class="col-12">
+            <div class="mb-2">
+                <div class="d-flex flex-row" *ngIf="coinLoaded">
+                    <div class="pills align-self-center" *ngFor="let cat of coinData.categories">
+                        {{cat}}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-start" >
+                <h1 class="mr-2 text-right text-secondary font-weight-bolder"
+                style="font-size:35px;overflow-wrap:anywhere" *ngIf="truncatePrice">{{latestPrice}}</h1>
+                <h1 class="mr-2 text-right text-secondary font-weight-bolder"
+                style="font-size:35px;overflow-wrap:anywhere" *ngIf="!truncatePrice">{{latestPrice | number:'0.1-8'}}</h1>
+                <h5 style="font-size:12px;font-weight:bold;" class="text-secondary"> {{tokens.pair_quote_name}}</h5>  
+            </div>
+            <div class="d-flex jusitfy-content-end" *ngIf="pancakeLoaded">
+                <!-- price in USD -->
+                <h1 class="mr-2 text-right text-white font-weight-bolder"
+                style="font-size:20px;overflow-wrap:anywhere">${{pancakeBase}}</h1>
+                <h5 class="text-white" style="font-size:10px;font-weight:bold;"> USD</h5>
+            </div>
+            <div class="d-flex">
+                <h2 class="text-right text-danger" *ngIf="!upordown">
+                    <span class="bi bi-arrow-down-right-square-fill"></span> (1hr) {{hourlyChange | number:'0.1-4'}}%
+                </h2>
+                <h2 class="text-right text-success" *ngIf="upordown">
+                    <span class="bi bi-arrow-up-right-square-fill"></span> (1hr) {{hourlyChange | number:'0.1-4'}}%
+                </h2>
+            </div>
+        </div>
         <div class="stats col-12">
             <a class="btn btn-secondary" target="_blank"
             href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{tokens.pair_base_address}}"
             ><span class="bi-arrow-down-up"></span> Trade</a>
-            <button class="btn ml-3" [class.btn-danger]="isSaved" [class.btn-outline-danger]="!isSaved" (click)="saveToken()"><span class="bi-heart-fill"></span></button>
+            <button class="btn btn-info ml-2"
+            (click)="openAdditionalInfo(info)"><span class="bi-info-circle-fill"></span></button>
+            <button class="btn ml-2" [class.btn-danger]="isSaved" [class.btn-outline-danger]="!isSaved" (click)="saveToken()"><span class="bi-heart-fill"></span></button>
+        </div>
+
+        <div class="col-12 mt-3 mb-2">
+            <div id="collapse" *ngIf="coinLoaded">
+                <p class="text-white">{{coinData.description.en | slice:0:200}}...</p>
+            </div>
         </div>
         <div class="table stats mt-3 table-borderless" style="padding:0.2em !important;">
             <tr>
                 <td>Total Liquidity</td>
-                <td>$87,000</td>
+                <td>{{totalLiquidity}}</td>
             </tr>
             <tr>
                 <td>{{liquidity.balances[0].currency.symbol}} Holdings</td>
@@ -33,3 +72,32 @@
     </app-daily-volume>
     
 </div>
+
+<ng-template #info let-modal style="width:max-content;">
+    <div class="modal-header bg-primary">
+      <h3 class="modal-title text-secondary font-weight-bold" id="modal-basic-title">Additional Pair Info</h3>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body bg-primary-dark">
+
+        <div class="d-flex align-items-stretch justify-content-center flex-column">
+            <table class="table table-borderless" style="font-size:15px;">
+                <tr class="text-secondary" *ngFor="let detail of details[0].smartContract.attributes">
+                    <th class="font-weight-bold">
+                        {{detail.name | titlecase}}
+                    </th>
+                    <th>
+                        -
+                    </th>
+                    <th class="text-white">
+                        {{detail.value}}
+                    </th>
+                </tr>
+            </table>
+            
+        </div>
+
+    </div>
+  </ng-template>

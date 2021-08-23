@@ -14,7 +14,7 @@
     width:280px;
     &:before {
       animation:left-to-right 1s alternate infinite linear;
-      background-image:linear-gradient(to right, transparent, $primary, transparent);
+      background-image:linear-gradient(to right, transparent, $secondary, transparent);
       content:"";
       height:20px;
       left:0;
@@ -24,13 +24,6 @@
       top:0;
     }
     &:after {
-      background-image:repeating-linear-gradient(
-        90deg,
-        $secondary,
-        $secondary 10px,
-        transparent 10px,
-        transparent 90px
-      );
       content:"";
       height:20px;
       left:0;

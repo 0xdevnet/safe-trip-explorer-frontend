@@ -19,6 +19,7 @@ html, body {
     backdrop-filter: blur( 13.5px );
     -webkit-backdrop-filter: blur( 13.5px );
     border-radius: 15px; 
+    box-shadow: $primary-lighter 0px 0px 6px;
 }
 
 

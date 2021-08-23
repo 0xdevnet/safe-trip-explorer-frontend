@@ -31,7 +31,10 @@ export class DailyVolumeComponent implements OnInit {
         display:false,
         gridLines: {
           display:false,
-        }   
+        },
+        ticks:{
+          padding: 100,
+        }
       }]
     }
   };

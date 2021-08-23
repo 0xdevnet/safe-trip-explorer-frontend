@@ -38,6 +38,7 @@ import { TokenStatsComponent } from './token-stats/token-stats.component';
 import { SponsorComponent } from './utils/sponsor/sponsor.component';
 import { SearchComponent } from './utils/search/search.component';
 import { DialogBodyComponent } from './utils/search/dialog-body/dialog-body.component';
+import { NewlyAddedComponent } from './newly-added/newly-added.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -72,6 +73,7 @@ const customNotifierOptions: NotifierOptions = {
     SponsorComponent,
     SearchComponent,
     DialogBodyComponent,
+    NewlyAddedComponent,
   ],
   imports: [
     BrowserModule,
