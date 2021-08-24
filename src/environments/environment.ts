@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server_url : 'http://safetrip-dev.eu-central-1.elasticbeanstalk.com/',
+  server_url : 'http://localhost:8000/',
 };
 
 /*
