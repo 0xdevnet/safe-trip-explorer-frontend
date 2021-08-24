@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  server_url : 'http://localhost:8000/',
+  server_url : 'https://api.safetrip.finance/',
 };
