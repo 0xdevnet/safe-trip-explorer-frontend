@@ -32,6 +32,11 @@
         display:none;
     }
 }
+@media screen and (max-width: 800px) {
+    .nav-link{
+        color:$primary !important;
+    }
+}
 
 .hidebtn{
     display:none;
