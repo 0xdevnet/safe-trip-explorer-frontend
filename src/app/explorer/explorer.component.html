@@ -1,8 +1,8 @@
-<div class="main-explorer row" style="margin-top:25px;padding:10px;">   
+<div class="main-explorer row mobile-margin" style="margin-top:25px;">   
 
     <div class="col-md-12 mb-4">
-        <div class="row ml-1 mr-1 box">
-            <div class="col-md-8" style="padding:20px 20px;">
+        <div class="row box mobile-margin">
+            <div class="col-md-8" style="padding:20px 10px;">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row align-items-center">
@@ -64,14 +64,14 @@
     </div>
 
     <div class="col-md-4 mb-4">
-        <div class="row ml-1 mr-1" >
+        <div class="row mobile-margin" >
 
             <div class="box col-sm-12" style="padding:30px 20px;">
                 <app-token-stats [coinLoaded]="coinLoaded" [coinData]="coinData">
                 </app-token-stats>
             </div> 
 
-            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 20px;">
+            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 10px;">
                 <app-sponsor></app-sponsor>
             </div>
         </div>
@@ -79,7 +79,7 @@
 
 
     <div class="col-md-8 mb-4">
-        <div class="row ml-1 mr-1" >
+        <div class="row mobile-margin" >
             <div class="box col-sm-12" style="padding:10px">
                 <div id="chart" >
                     <app-tvchart></app-tvchart>
@@ -88,15 +88,15 @@
             
         </div>
 
-        <div class="row mt-3 ml-1 mr-1 justify-content-between">
+        <div class="row mt-3 mobile-margin">
             <div class="col-lg-12" style="padding:5px;">
-                <div class="box" style="padding:15px">
+                <div class="box" style="padding:20px">
                     <app-trades></app-trades>
                 </div>
             </div>
 
         </div>
-        <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile-display" style="padding:30px 20px;">
+        <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile-display" style="padding:30px 10px;">
             <app-sponsor></app-sponsor>
         </div>
     </div>

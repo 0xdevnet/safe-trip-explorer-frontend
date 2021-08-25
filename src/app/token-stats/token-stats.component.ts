@@ -35,13 +35,14 @@ export class TokenStatsComponent implements OnInit {
   pancakeBase:any=""
   pancakeQuote:any=""
   totalLiquidity:any="???"
+  dilutedCap:any="???"
 
   constructor(
     private tokenData:MetadataService, 
     private trendWatch:TrendWatchService, 
     private modalService:NgbModal,
     private notify:NotifierService) { 
-
+    
     this.notifier = notify;
     this.loadVolume();
     this.tokenSub = this.tokenData.getTokens().subscribe(data =>{
@@ -77,18 +78,45 @@ export class TokenStatsComponent implements OnInit {
 
 
     let a,b;
-    console.log(this.liquidity)
+
     if(this.liquidity.balances[0].currency.address === this.tokens.pair_base_address){
       a = (this.pancakeBase * this.liquidity.balances[0].value)
-      console.log(this.liquidity.balances[0].value)
+    }
+    else{
+      a = (this.pancakeBase * this.liquidity.balances[1].value)
     }
     if(this.liquidity.balances[1].currency.address === this.tokens.pair_quote_address){
       b = (this.pancakeQuote * this.liquidity.balances[1].value)
     }
-    console.log(a, b)
+    else{
+      b = (this.pancakeQuote * this.liquidity.balances[0].value)
+    }
+
+    this.totalLiquidity = "$" + ((a + b).toFixed(3))
+
+    let decimal = 1, supply = 1;
+    for(let attr of this.details[0].smartContract.attributes){
+      if(attr.name.toLowerCase() == "decimals"){
+        decimal = Number(attr.value)
+      }
+      if(attr.name.toLowerCase() == "totalsupply" || attr.name.toLowerCase() == "maxsupply"){
+        supply = Number(attr.value)
+        
+      }
+    } 
+    decimal = decimal == 1 ? 18 : decimal
+    let s = "1"
+    for(var i=0 ;i<decimal;i++){
+      s += "0"
+    }
+    if(supply != 1){
+      let num = Math.round(supply / Number(s))
+      this.totalSupply = this.numberToHuman(num)
+      let cap = Math.round((num) * Number(this.pancakeBase))
+      this.dilutedCap = "$" + this.numberToHuman(cap);
+      
+    }
     
-
-
 
   }
 
@@ -160,6 +188,23 @@ export class TokenStatsComponent implements OnInit {
   }
   ngOnDestroy(){
     this.tokenSub.unsubscribe();
+  }
+
+  numberToHuman(labelValue:number){
+      // Nine Zeroes for Billions
+      return Math.abs(Number(labelValue)) >= 1.0e+9
+
+      ? Math.abs(Number(labelValue)) / 1.0e+9 + "B"
+      // Six Zeroes for Millions 
+      : Math.abs(Number(labelValue)) >= 1.0e+6
+
+      ? Math.abs(Number(labelValue)) / 1.0e+6 + "M"
+      // Three Zeroes for Thousands
+      : Math.abs(Number(labelValue)) >= 1.0e+3
+
+      ? Math.abs(Number(labelValue)) / 1.0e+3 + "K"
+
+      : Math.abs(Number(labelValue));
   }
 
 }

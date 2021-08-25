@@ -20,7 +20,7 @@ export class TVchartComponent implements OnInit {
   constructor(private data:MetadataService, private ohlc:OhlcService) { }
 
     private _symbol: ChartingLibraryWidgetOptions['symbol'] = 'AAPL';
-    private _interval: ChartingLibraryWidgetOptions['interval'] = '60' as ResolutionString;
+    private _interval: ChartingLibraryWidgetOptions['interval'] = '240' as ResolutionString;
     private _libraryPath: ChartingLibraryWidgetOptions['library_path'] = '/assets/charting_library/';
     private _chartsStorageUrl: ChartingLibraryWidgetOptions['charts_storage_url'] = 'https://saveload.tradingview.com';
     private _chartsStorageApiVersion: ChartingLibraryWidgetOptions['charts_storage_api_version'] = '1.1';
@@ -55,7 +55,7 @@ export class TVchartComponent implements OnInit {
             theme:'Dark',
             library_path: this._libraryPath,
             locale: 'en',
-            disabled_features: ['use_localstorage_for_settings'],
+            disabled_features: ['left_toolbar'],
             enabled_features: ['study_templates'],
             charts_storage_url: this._chartsStorageUrl,
             charts_storage_api_version: this._chartsStorageApiVersion,
