@@ -55,7 +55,7 @@ export class TVchartComponent implements OnInit {
             theme:'Dark',
             library_path: this._libraryPath,
             locale: 'en',
-            disabled_features: ['left_toolbar'],
+            disabled_features: [],
             enabled_features: ['study_templates'],
             charts_storage_url: this._chartsStorageUrl,
             charts_storage_api_version: this._chartsStorageApiVersion,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../services/metadata.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-trades',
@@ -18,9 +20,11 @@ export class TradesComponent implements OnInit {
     this.tokenData.getTrades().subscribe(data => {
       this.trades = data.map((data:any) => {
   
-        var d = new Date(data.block.timestamp.time + " UTC")
+        var d = moment(data.block.timestamp.time)
+        var utcOffset = moment().utcOffset();
+        var local_time = d.add(utcOffset, "minutes");
         let obj = {
-          "date" : d.toLocaleString(),
+          "date" : local_time.fromNow(),
           "block" : data.block.height,
           "type" : "",
           "usd" : data.tradeAmount,

@@ -1,8 +1,11 @@
 @import '../../global.scss';
 
-th{
+.heading{
     font-weight:bold;
     color:white;
+    position: sticky;
+    top:0;
+    z-index:2;
 }
 tr{
     color:white;
