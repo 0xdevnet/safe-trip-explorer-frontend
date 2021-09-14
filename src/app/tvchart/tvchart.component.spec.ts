@@ -8,9 +8,9 @@ describe('TVchartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TVchartComponent ]
+      declarations: [TVchartComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

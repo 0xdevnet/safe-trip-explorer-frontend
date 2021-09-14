@@ -8,9 +8,9 @@ import { TrendWatchService } from 'src/app/services/trend-watch.service';
 })
 export class SponsorComponent implements OnInit {
 
-  sponsors:any = [];
-  constructor(private trendWatch:TrendWatchService) { 
-    this.trendWatch.getSponsorList().subscribe((data:any) => {
+  sponsors: any = [];
+  constructor(private trendWatch: TrendWatchService) {
+    this.trendWatch.getSponsorList().subscribe((data: any) => {
       this.sponsors = data;
     })
   }

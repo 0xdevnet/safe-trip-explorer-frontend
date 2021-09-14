@@ -6,16 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class CoinGeckoService {
 
-  private headers:any = {
-    "accept" : "application/json"
+  private headers: any = {
+    "accept": "application/json"
   }
-  private url:any = "https://api.coingecko.com/api/v3/coins/binance-smart-chain/contract/"
+  private url: any = "https://api.coingecko.com/api/v3/coins/binance-smart-chain/contract/"
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
 
-   }
+  }
 
-  getInfo(contract:any){
-    return this.http.get(this.url+contract, {headers:this.headers, observe:'body', responseType:'json'})
+  getInfo(contract: any) {
+    return this.http.get(this.url + contract, { headers: this.headers, observe: 'body', responseType: 'json' })
   }
 }

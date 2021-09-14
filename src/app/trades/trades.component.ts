@@ -10,44 +10,44 @@ import * as moment from 'moment';
 })
 export class TradesComponent implements OnInit {
 
-  trades:any = [];
+  trades: any = [];
 
-  constructor(private tokenData:MetadataService) {
+  constructor(private tokenData: MetadataService) {
     this.loadTrades();
-   }
+  }
 
-  loadTrades(){
+  loadTrades() {
     this.tokenData.getTrades().subscribe(data => {
-      this.trades = data.map((data:any) => {
-  
+      this.trades = data.map((data: any) => {
+
         var d = moment(data.block.timestamp.time)
         var utcOffset = moment().utcOffset();
         var local_time = d.add(utcOffset, "minutes");
         let obj = {
-          "date" : local_time.fromNow(),
-          "block" : data.block.height,
-          "type" : "",
-          "usd" : data.tradeAmount,
+          "date": local_time.fromNow(),
+          "block": data.block.height,
+          "type": "",
+          "usd": data.tradeAmount,
           "buyOrSell": 0,
-          "buySymbol":data.buyCurrency.symbol,
-          "sellSymbol":data.sellCurrency.symbol,
-          "price" : 0,
-          "buy" : "",
-          "sell" : "",
-          "maker" : data.taker.address,
-          "hash" : data.transaction.hash,
+          "buySymbol": data.buyCurrency.symbol,
+          "sellSymbol": data.sellCurrency.symbol,
+          "price": 0,
+          "buy": "",
+          "sell": "",
+          "maker": data.taker.address,
+          "hash": data.transaction.hash,
         }
-        if(data.side == "SELL"){
+        if (data.side == "SELL") {
           obj.type = "SELL";
           obj.price = (data.price),
-          obj.buyOrSell = 0;
+            obj.buyOrSell = 0;
           obj.buy = data.buyAmount;
           obj.sell = data.sellAmount;
         }
-        else{
+        else {
           obj.type = "BUY";
-          obj.price = 1/parseFloat(data.price),
-          obj.buyOrSell = 1;
+          obj.price = 1 / parseFloat(data.price),
+            obj.buyOrSell = 1;
           obj.buy = data.sellAmount;
           obj.sell = data.buyAmount;
         }
@@ -55,7 +55,7 @@ export class TradesComponent implements OnInit {
       })
     })
 
-    
+
   }
 
   ngOnInit(): void {

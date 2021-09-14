@@ -1,37 +1,36 @@
-@import '../../global.scss';
+@import "../../global.scss";
 
-.mobile-margin{
-    margin-left:5px;
-    margin-right:5px;
+.mobile-margin {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.token{
-    color:white;
-    font-weight:900;
-    font-size:30px;
-    text-transform: uppercase;
+.token {
+  color: white;
+  font-weight: 900;
+  font-size: 30px;
+  text-transform: uppercase;
 }
-.link{
-    color: $secondary;
-    font-size:22px;
+.link {
+  color: $secondary;
+  font-size: 22px;
 }
-.list{
-color:white;
-font-size:30px;
-font-weight:600;
-padding:10px 0px;
-}
-
-.sponsor-mobile-display{
-    display:none;
+.list {
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 10px 0px;
 }
 
-@media screen and (max-width:800px) {
-    .sponsor-mobile{
-        display:none;
-    }
-    .sponsor-mobile-display{
-        display:block;
-    }
+.sponsor-mobile-display {
+  display: none;
+}
 
+@media screen and (max-width: 800px) {
+  .sponsor-mobile {
+    display: none;
+  }
+  .sponsor-mobile-display {
+    display: block;
+  }
 }

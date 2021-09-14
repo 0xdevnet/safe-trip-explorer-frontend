@@ -1,46 +1,45 @@
-@import '../../global.scss';
+@import "../../global.scss";
 
-.heading{
-    font-weight:bold;
-    color:white;
-    position: sticky;
-    top:0;
-    z-index:2;
+.heading {
+  font-weight: bold;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
-tr{
-    color:white;
-    &:hover{
-        background-color:$primary;
+tr {
+  color: white;
+  &:hover {
+    background-color: $primary;
+  }
+}
+.table {
+  width: max-content;
+  overflow: scroll;
+}
+.main {
+  height: 600px !important;
+  overflow: scroll;
+}
+td {
+  a {
+    color: $secondary;
+    &:hover {
+      color: $secondary-dark;
     }
-}
-.table{
-    width:max-content;
-    overflow:scroll;
-}
-.main{
-    height:600px !important;
-    overflow:scroll;
-}
-td{
-    a{
-        color:$secondary;
-        &:hover{
-            color:$secondary-dark;
-        }
-    }
+  }
 }
 
-
-.list{
-    color:white;
-    font-size:30px;
-    font-weight:600;
-    padding:10px 0px;
+.list {
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 10px 0px;
 }
 
-.buy{
-    color:rgb(13, 206, 13);
+.buy {
+  color: rgb(13, 206, 13);
 }
-.sell{
-    color:rgb(255, 80, 80);
+.sell {
+  color: rgb(255, 80, 80);
 }

@@ -1,106 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'global';
+@import "global";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
-
-
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 @import "~angular-notifier/styles";
 
-html, body { 
-    height: 100%;
-    background-color: $dark !important;
-    scroll-behavior: smooth;
- }    
- .box{
-    background: rgba(34, 42, 63, 0.616);
-    backdrop-filter: blur( 13.5px );
-    -webkit-backdrop-filter: blur( 13.5px );
-    border-radius: 15px; 
-    box-shadow: $primary-lighter 0px 0px 6px;
+html,
+body {
+  height: 100%;
+  background-color: $dark !important;
+  scroll-behavior: smooth;
 }
-
+.box {
+  background: rgba(34, 42, 63, 0.616);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 15px;
+  box-shadow: $primary-lighter 0px 0px 6px;
+}
 
 ::-webkit-scrollbar {
-    height:4px;
-    width: 4px !important;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px $dark; 
-    border-radius: 15px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: $primary-lighter; 
-    border-radius: 15px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: $primary-lighter; 
-  }
-
-  .round{
-    margin-right:10px;
-    border-radius: 50%;
-    height:50px;
-    width:50px;
-    font-size:130%;
-    font-weight:800;
-    &:hover{
-        background-color:$primary-darker;
-    }
+  height: 4px;
+  width: 4px !important;
 }
 
-.table{
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $dark;
+  border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary-lighter;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-lighter;
+}
+
+.round {
+  margin-right: 10px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 130%;
+  font-weight: 800;
+  &:hover {
+    background-color: $primary-darker;
+  }
+}
+
+.table {
   word-wrap: break-word;
-  word-break: break-all;  
+  word-break: break-all;
   white-space: normal !important;
-  text-align: justify; 
-  overflow-x:auto;
-  position:sticky;
+  text-align: justify;
+  overflow-x: auto;
+  position: sticky;
 }
-.thead{
-  background-color:$primary-darker !important;
-  color:$white;
+.thead {
+  background-color: $primary-darker !important;
+  color: $white;
 }
 
-
-.sponsor{
-  padding:15px;
-  margin-top:15px;
-  background-color:$dark;
+.sponsor {
+  padding: 15px;
+  margin-top: 15px;
+  background-color: $dark;
   border-radius: 20px;
 }
-.stats{
-  p{
-      font-size:15px;
-      font-weight:400;
-      line-height:15px;
+.stats {
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
   }
 }
-.excerpt{
+.excerpt {
   display: block;
-  line-height:25px;
-  height:50px;
+  line-height: 25px;
+  height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.coming-soon{
+.coming-soon {
   filter: blur(15px);
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
   -o-filter: blur(10px);
   -ms-filter: blur(10px);
 }
-.coming{
-  margin-bottom:-30px;
-  color:$primary-dark !important;
-  z-index:10;
+.coming {
+  margin-bottom: -30px;
+  color: $primary-dark !important;
+  z-index: 10;
 }

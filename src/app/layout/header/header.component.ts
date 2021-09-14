@@ -5,31 +5,31 @@ import { TrendWatchService } from 'src/app/services/trend-watch.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers : [],
+  providers: [],
 })
 export class HeaderComponent implements OnInit {
 
-  isMenuDropdown:boolean = false;
+  isMenuDropdown: boolean = false;
 
-  @HostListener('window:resize', ['$event'])  
-  onResize() {  
+  @HostListener('window:resize', ['$event'])
+  onResize() {
     this.toggleMenu();
-  }  
-  pairs:any[] = this.trendWatch.getTrendList();
+  }
+  pairs: any[] = this.trendWatch.getTrendList();
 
-  constructor(private trendWatch: TrendWatchService) { 
-    this.trendWatch.getTrendList().subscribe((data:any) => {
+  constructor(private trendWatch: TrendWatchService) {
+    this.trendWatch.getTrendList().subscribe((data: any) => {
       this.trendList = data;
     })
   }
-  public watchList:any[] = this.trendWatch.getWatchList();
-  public trendList:any[] = [];
+  public watchList: any[] = this.trendWatch.getWatchList();
+  public trendList: any[] = [];
 
-  toggleMenu(){
-    if(window.innerWidth > 800){
+  toggleMenu() {
+    if (window.innerWidth > 800) {
       this.isMenuDropdown = true;
     }
-    else{
+    else {
       this.isMenuDropdown = false;
     }
   }
@@ -38,14 +38,14 @@ export class HeaderComponent implements OnInit {
     this.toggleMenu();
   }
 
-  async connectWallet(){
+  async connectWallet() {
     console.log("s")
   }
 
-  removeToken(event:any){
+  removeToken(event: any) {
     event.preventDefault();
-    let node:any = event.target.parentNode;
-    let num:string = node.parentNode.id
+    let node: any = event.target.parentNode;
+    let num: string = node.parentNode.id
 
     this.trendWatch.removeWatchListItem(num);
     node.parentNode.parentNode.removeChild(node.parentNode);

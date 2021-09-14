@@ -8,9 +8,8 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  constructor() 
-    {
-    }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

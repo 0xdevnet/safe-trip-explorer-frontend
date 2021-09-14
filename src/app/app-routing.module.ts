@@ -6,10 +6,10 @@ import { NewlyAddedComponent } from './newly-added/newly-added.component';
 import { NotFoundComponent } from './utils/not-found/not-found.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'dashboard', pathMatch:'full'},
-  {path:'dashboard', component:DashboardComponent},
-  {path:'newly-added', component:NewlyAddedComponent},
-  {path:'explorer/:slug', component:ExplorerComponent},
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'newly-added', component: NewlyAddedComponent },
+  { path: 'explorer/:slug', component: ExplorerComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

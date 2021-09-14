@@ -8,23 +8,23 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class OhlcService {
 
-  constructor(private http:HttpClient) { 
-    
-  }
-  private bars:any = new BehaviorSubject<any>([]);
+  constructor(private http: HttpClient) {
 
-  getDashboardOHLCAPI(){
+  }
+  private bars: any = new BehaviorSubject<any>([]);
+
+  getDashboardOHLCAPI() {
     const headers = {
     }
     let url = environment.server_url + "api/tokens/safe-trip-chart"
-    return this.http.get(url,{headers, responseType:'json', observe:'body'})
-    
+    return this.http.get(url, { headers, responseType: 'json', observe: 'body' })
+
   }
   setBars(answer: any) {
     this.bars.next(answer);
   }
 
-  getBars(){
+  getBars() {
     return this.bars.asObservable();
   }
 

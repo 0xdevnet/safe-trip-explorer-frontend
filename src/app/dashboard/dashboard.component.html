@@ -1,117 +1,115 @@
-<div class="main-explorer row" style="margin-top:25px">   
-    <div class="col-md-4 mb-4">
-        <div class="row ml-1 mr-1" >
-            <div class="box col-sm-12 mb-3" style="padding:30px 10px;">
-                <div class="form-outline d-flex justify-content-center">
-                    <app-search></app-search>
-                </div>
-
-                <hr>
-
-                <h2 class="text-white text-center font-weight-bolder">
-                    <img width="55" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Uniswap_Logo.svg/1026px-Uniswap_Logo.svg.png"> UNISWAP TOOLS
-                 </h2>
-                <div class="form-outline d-flex flex-column align-items-center">
-                    <div class="list coming">
-                        Coming Soon!
-                    </div>
-                    <div class="coming-soon">
-                        <input class="form-control bg-secondary-light" 
-                        placeholder="Search Name/Token Address"
-                        type="text" >
-                    </div>
-                </div>
-                
-                
-            </div>
- 
-            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 10px;">
-                <app-sponsor></app-sponsor>
-            </div>
+<div class="main-explorer row" style="margin-top:25px">
+  <div class="col-md-4 mb-4">
+    <div class="row ml-1 mr-1">
+      <div class="box col-sm-12 mb-3" style="padding:30px 10px;">
+        <div class="form-outline d-flex justify-content-center">
+          <app-search></app-search>
         </div>
+
+        <hr>
+
+        <h2 class="text-white text-center font-weight-bolder">
+          <img width="55"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Uniswap_Logo.svg/1026px-Uniswap_Logo.svg.png">
+          UNISWAP TOOLS
+        </h2>
+        <div class="form-outline d-flex flex-column align-items-center">
+          <div class="list coming">
+            Coming Soon!
+          </div>
+          <div class="coming-soon">
+            <input class="form-control bg-secondary-light" placeholder="Search Name/Token Address" type="text">
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 10px;">
+        <app-sponsor></app-sponsor>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+    <div class="row mb-3 ml-1 mr-1 justify-content-between" style="padding:5px;">
+      <div class="box col-sm-12" style="padding:30px 10px">
+        <h1 class="token text-right">Safe Trip Finance</h1>
+        <div class="d-flex justify-content-end">
+          <h2 class="text-right text-danger" *ngIf="!upordown">
+            <span class="bi bi-arrow-down-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
+          </h2>
+          <h2 class="text-right text-success" *ngIf="upordown">
+            <span class="bi bi-arrow-up-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
+          </h2>
+          <h1 class="ml-2 token text-right text-secondary">{{latestPrice | slice:0:8}}</h1>
+        </div>
+        <div id="chart">
+          <canvas baseChart [datasets]="lineChartData" [options]="lineChartOptions" [labels]="lineChartLabels"
+            [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+          </canvas>
+        </div>
+      </div>
+
     </div>
 
-
-    <div class="col-md-8">
-        <div class="row mb-3 ml-1 mr-1 justify-content-between" style="padding:5px;">
-            <div class="box col-sm-12" style="padding:30px 10px">
-                <h1 class="token text-right">Safe Trip Finance</h1>
-                <div class="d-flex justify-content-end">
-                    <h2 class="text-right text-danger" *ngIf="!upordown">
-                        <span class="bi bi-arrow-down-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
-                    </h2>
-                    <h2 class="text-right text-success" *ngIf="upordown">
-                        <span class="bi bi-arrow-up-right-square-fill"></span> {{secondPrice | number:'0.1-4'}}%
-                    </h2>
-                    <h1 class="ml-2 token text-right text-secondary">{{latestPrice | slice:0:8}}</h1>
-                </div>
-                <div id="chart">
-                    <canvas baseChart 
-                        [datasets]="lineChartData"
-                        [options]="lineChartOptions"
-                        [labels]="lineChartLabels"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType">
-                    </canvas>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row mt-3 ml-1 mr-1 justify-content-between">
-            <div class="col-lg-6 mt-3" style="padding:5px;">
-                <div class="box" style="padding:10px">
-                    <h3 class="list">Trending Pairs</h3>
-                    <table class="table">
-                        <tr class="thead">
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Link</th>
-                        </tr>
-                        <tr *ngFor="let pair of trendList;let i = index">
-                            <td class="text-secondary">#{{i+1}}</td>
-                            <td class="text-white">
-                                <a class="text-secondary" href="/explorer/{{pair.pair_address}}">
-                                    {{pair.pair_base_name}}/{{pair.pair_quote_name}}
-                                </a>
-                            </td>
-                            <td class="text-white"><a class="text-secondary" href="/explorer/{{pair.pair_address}}">{{pair.pair_address | slice:0:6}}</a></td>
-                        </tr>
-                    </table>
-                    <div class="text-center" style="width:100%;" *ngIf="trendList.length == 0">
-                        <h4 class="text-center text-white">Trending Tokens Appear Here</h4>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="col-lg-6 mt-3" style="padding:5px">
-                <div class="box" style="padding:10px;">
-                    <h3 class="list">Watchlist</h3>
-                    <table class="table data-justify">
-                        <tr class="thead">
-                            <th><span class="bi-heart text-white"></span></th>
-                            <th>Name</th>
-                            <th>Link</th>
-                        </tr>
-                        <tr *ngFor="let pair of watchList;let i = index" id={{pair.address}}>
-                            <td class="text-secondary" style="font-size:20px;cursor:pointer;"><span (click)="removeToken($event)" class="bi-heart-fill text-danger"></span></td>
-                            <td class="text-white">{{pair.base_name}}/{{pair.quote_name}}</td>
-                            <td class="text-white"><a class="text-secondary" href="/explorer/{{pair.address}}">{{pair.address | slice:0:6}}</a></td>
-
-                            
-                        </tr>
-                    </table>
-                    <div class="text-center" style="width:100%;" *ngIf="watchList.length == 0">
-                        <h4 class="text-center text-white">Saved Tokens Will Appear Here.</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="box col-sm-12 mt-3 mb-5 sponsor-mobile-display" style="padding:30px 10px;">
-                <app-sponsor></app-sponsor>
-            </div>
+    <div class="row mt-3 ml-1 mr-1 justify-content-between">
+      <div class="col-lg-6 mt-3" style="padding:5px;">
+        <div class="box" style="padding:10px">
+          <h3 class="list">Trending Pairs</h3>
+          <table class="table">
+            <tr class="thead">
+              <th>#</th>
+              <th>Name</th>
+              <th>Link</th>
+            </tr>
+            <tr *ngFor="let pair of trendList;let i = index">
+              <td class="text-secondary">#{{i+1}}</td>
+              <td class="text-white">
+                <a class="text-secondary" href="/explorer/{{pair.pair_address}}">
+                  {{pair.pair_base_name}}/{{pair.pair_quote_name}}
+                </a>
+              </td>
+              <td class="text-white"><a class="text-secondary"
+                  href="/explorer/{{pair.pair_address}}">{{pair.pair_address | slice:0:6}}</a></td>
+            </tr>
+          </table>
+          <div class="text-center" style="width:100%;" *ngIf="trendList.length == 0">
+            <h4 class="text-center text-white">Trending Tokens Appear Here</h4>
+          </div>
 
         </div>
+      </div>
+
+      <div class="col-lg-6 mt-3" style="padding:5px">
+        <div class="box" style="padding:10px;">
+          <h3 class="list">Watchlist</h3>
+          <table class="table data-justify">
+            <tr class="thead">
+              <th><span class="bi-heart text-white"></span></th>
+              <th>Name</th>
+              <th>Link</th>
+            </tr>
+            <tr *ngFor="let pair of watchList;let i = index" id={{pair.address}}>
+              <td class="text-secondary" style="font-size:20px;cursor:pointer;"><span (click)="removeToken($event)"
+                  class="bi-heart-fill text-danger"></span></td>
+              <td class="text-white">{{pair.base_name}}/{{pair.quote_name}}</td>
+              <td class="text-white"><a class="text-secondary" href="/explorer/{{pair.address}}">{{pair.address |
+                  slice:0:6}}</a></td>
+
+
+            </tr>
+          </table>
+          <div class="text-center" style="width:100%;" *ngIf="watchList.length == 0">
+            <h4 class="text-center text-white">Saved Tokens Will Appear Here.</h4>
+          </div>
+        </div>
+      </div>
+      <div class="box col-sm-12 mt-3 mb-5 sponsor-mobile-display" style="padding:30px 10px;">
+        <app-sponsor></app-sponsor>
+      </div>
+
     </div>
+  </div>
 </div>

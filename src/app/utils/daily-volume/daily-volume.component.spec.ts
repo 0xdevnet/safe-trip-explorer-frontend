@@ -8,9 +8,9 @@ describe('DailyVolumeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DailyVolumeComponent ]
+      declarations: [DailyVolumeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

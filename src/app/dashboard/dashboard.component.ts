@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color,Label } from 'ng2-charts';
+import { Color, Label } from 'ng2-charts';
 import { MetadataService } from '../services/metadata.service';
 import { OhlcService } from '../services/ohlc.service';
 import { TrendWatchService } from '../services/trend-watch.service';
@@ -13,52 +13,52 @@ import { TrendWatchService } from '../services/trend-watch.service';
 export class DashboardComponent implements OnInit {
 
 
-  constructor(private trendWatch:TrendWatchService, private ohlc:OhlcService, private meta:MetadataService) { 
-    this.trendWatch.getTrendList().subscribe((data:any) => {
+  constructor(private trendWatch: TrendWatchService, private ohlc: OhlcService, private meta: MetadataService) {
+    this.trendWatch.getTrendList().subscribe((data: any) => {
       this.trendList = data;
     })
 
     //prevent loading on dashboard
     this.meta.setLoading(false);
-    
+
     this.ohlc.getDashboardOHLCAPI()
-    .subscribe(
-      {
-        next: next=>{
-          this.lineChartData[0].data = (next as any).data.map((data:any) =>{
-            return data.close
-          })
-          this.lineChartLabels = (next as any).data.map((data:any) =>{
-            return data.timeInterval.minute
-          })
-          let len = this.lineChartData[0].data?.length || 0;
-          if(len){
-            this.latestPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 1] : 0
-            this.secondPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 2] : 0
+      .subscribe(
+        {
+          next: next => {
+            this.lineChartData[0].data = (next as any).data.map((data: any) => {
+              return data.close
+            })
+            this.lineChartLabels = (next as any).data.map((data: any) => {
+              return data.timeInterval.minute
+            })
+            let len = this.lineChartData[0].data?.length || 0;
+            if (len) {
+              this.latestPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 1] : 0
+              this.secondPrice = this.lineChartData[0].data ? this.lineChartData[0].data[len - 2] : 0
 
-            this.secondPrice = ((this.latestPrice - this.secondPrice)/this.secondPrice)*100
-            console.log(this.secondPrice)
-            if(this.secondPrice >= 0){
-              this.upordown = 1
+              this.secondPrice = ((this.latestPrice - this.secondPrice) / this.secondPrice) * 100
+              console.log(this.secondPrice)
+              if (this.secondPrice >= 0) {
+                this.upordown = 1
+              }
+              else {
+                this.upordown = 0
+              }
             }
-            else{
-              this.upordown = 0
-            }
+
+          },
+          error: error => {
+            console.error("ERROR, OHLC Daily data error")
           }
-
-        },
-        error: error =>{
-          console.error("ERROR, OHLC Daily data error")
         }
-      }
-    )
+      )
   }
 
-  public watchList:any[] = this.trendWatch.getWatchList();
-  public trendList:any[] = [];
-  public latestPrice:any="";
-  public secondPrice:any;
-  public upordown:any
+  public watchList: any[] = this.trendWatch.getWatchList();
+  public trendList: any[] = [];
+  public latestPrice: any = "";
+  public secondPrice: any;
+  public upordown: any
 
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Price' },
@@ -68,19 +68,19 @@ export class DashboardComponent implements OnInit {
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    aspectRatio:2,
+    aspectRatio: 2,
     scales: {
       xAxes: [{
-      display:false,
-      gridLines: {
-        display:false,
+        display: false,
+        gridLines: {
+          display: false,
         }
       }],
       yAxes: [{
-        display:false,
+        display: false,
         gridLines: {
-          display:false,
-        }   
+          display: false,
+        }
       }]
     }
   };
@@ -89,18 +89,18 @@ export class DashboardComponent implements OnInit {
       borderColor: '#FFF9D2',
       backgroundColor: '#fff08e26',
     },
-    
+
   ];
   public lineChartLegend = false;
   public lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
-    
+
   }
 
-  removeToken(event:any){
-    let node:any = event.target.parentNode;
-    let num:string = node.parentNode.id;
+  removeToken(event: any) {
+    let node: any = event.target.parentNode;
+    let num: string = node.parentNode.id;
 
     this.trendWatch.removeWatchListItem(num);
     node.parentNode.parentNode.removeChild(node.parentNode);

@@ -1,103 +1,100 @@
-<div class="main-explorer row mobile-margin" style="margin-top:25px;">   
+<div class="main-explorer row mobile-margin" style="margin-top:25px;">
 
-    <div class="col-md-12 mb-4">
-        <div class="row box mobile-margin">
-            <div class="col-md-8" style="padding:20px 10px;">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex flex-row align-items-center">
-                            <div class="loaded" *ngIf="coinLoaded">
-                                <img class="img-fluid img mr-1" width="70" height="70" 
-                                *ngIf="address == '0x6e49d16e53443c06b86a42c259227464b8987af0'"
-                                src="../../assets/SafeTrip.svg" alt="">
+  <div class="col-md-12 mb-4">
+    <div class="row box mobile-margin">
+      <div class="col-md-8" style="padding:20px 10px;">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-row align-items-center">
+              <div class="loaded" *ngIf="coinLoaded">
+                <img class="img-fluid img mr-1" width="70" height="70"
+                  *ngIf="address == '0x6e49d16e53443c06b86a42c259227464b8987af0'" src="../../assets/SafeTrip.svg"
+                  alt="">
 
-                                <img class="img-fluid img mr-1" width="70" height="70" 
-                                *ngIf="coinData.image.large && address != '0x6e49d16e53443c06b86a42c259227464b8987af0'"
-                                src="{{coinData.image.large}}" alt="">
+                <img class="img-fluid img mr-1" width="70" height="70"
+                  *ngIf="coinData.image.large && address != '0x6e49d16e53443c06b86a42c259227464b8987af0'"
+                  src="{{coinData.image.large}}" alt="">
 
-                            </div>
-                            <div class="not-loaded mr-2">
-                                <span *ngIf="!coinLoaded"
-                                class="bi-patch-question-fill text-secondary" alt=""
-                                style="font-size:60px;"
-                                > </span>
-                            </div>
-                            
-                            
-                            <div>
-                                <h1 class=" mt-3 mb-3 token text-secondary mx-auto" style="font-size:35px;overflow-wrap:anywhere;">
-                                    {{tokens.pair_base_name}}/{{tokens.pair_quote_name}}
-                                </h1>
-                                <h5 *ngIf="coinLoaded" class=" mt-3 mb-3 token text-secondary mx-auto font-weight-light" 
-                                style="font-size:15px;overflow-wrap:anywhere;">
-                                    ({{coinData.name}})
-                                </h5>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="mt-2">
-                            <app-links
-                            [tokens]="tokens"
-                            [data]="coinData" [coinLoaded]="coinLoaded"
-                            ></app-links>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
+              </div>
+              <div class="not-loaded mr-2">
+                <span *ngIf="!coinLoaded" class="bi-patch-question-fill text-secondary" alt="" style="font-size:60px;">
+                </span>
+              </div>
+
+
+              <div>
+                <h1 class=" mt-3 mb-3 token text-secondary mx-auto" style="font-size:35px;overflow-wrap:anywhere;">
+                  {{tokens.pair_base_name}}/{{tokens.pair_quote_name}}
+                </h1>
+                <h5 *ngIf="coinLoaded" class=" mt-3 mb-3 token text-secondary mx-auto font-weight-light"
+                  style="font-size:15px;overflow-wrap:anywhere;">
+                  ({{coinData.name}})
+                </h5>
+              </div>
+
+
+            </div>
+            <div class="mt-2">
+              <app-links [tokens]="tokens" [data]="coinData" [coinLoaded]="coinLoaded"></app-links>
             </div>
 
-            <div class="col-md-4 col-xs-12 d-flex align-items-center justify-content-center" style="padding:20px 10px">
-                
-                <div class="mr-2">
-                    <app-search></app-search>
-                    <div class="d-flex jusitfy-content-end mt-2">
-                        <h3 class="text-white"> Contract <span (click)="copyContractAddress()" style="cursor:pointer" class="bi-clipboard"></span></h3>
-                        <h3 class="text-white ml-3 mr-3"> | </h3>
-                        <h3 class="text-white"> Pair <span (click)="copyPairAddress()" style="cursor:pointer" class="bi-clipboard"></span></h3>
-                    </div>
-                </div>
-            </div>
-           
+
+          </div>
         </div>
+      </div>
+
+      <div class="col-md-4 col-xs-12 d-flex align-items-center justify-content-center" style="padding:20px 10px">
+
+        <div class="mr-2">
+          <app-search></app-search>
+          <div class="d-flex jusitfy-content-end mt-2">
+            <h3 class="text-white"> Contract <span (click)="copyContractAddress()" style="cursor:pointer"
+                class="bi-clipboard"></span></h3>
+            <h3 class="text-white ml-3 mr-3"> | </h3>
+            <h3 class="text-white"> Pair <span (click)="copyPairAddress()" style="cursor:pointer"
+                class="bi-clipboard"></span></h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <div class="row mobile-margin">
+
+      <div class="box col-sm-12" style="padding:30px 20px;">
+        <app-token-stats [coinLoaded]="coinLoaded" [coinData]="coinData">
+        </app-token-stats>
+      </div>
+
+      <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 10px;">
+        <app-sponsor></app-sponsor>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8 mb-4">
+    <div class="row mobile-margin">
+      <div class="box col-sm-12" style="padding:10px">
+        <div id="chart">
+          <app-tvchart></app-tvchart>
+        </div>
+      </div>
+
     </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="row mobile-margin" >
-
-            <div class="box col-sm-12" style="padding:30px 20px;">
-                <app-token-stats [coinLoaded]="coinLoaded" [coinData]="coinData">
-                </app-token-stats>
-            </div> 
-
-            <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile" style="padding:30px 10px;">
-                <app-sponsor></app-sponsor>
-            </div>
+    <div class="row mt-3 mobile-margin">
+      <div class="col-lg-12" style="padding:5px;">
+        <div class="box" style="padding:20px">
+          <app-trades></app-trades>
         </div>
+      </div>
+
     </div>
-
-
-    <div class="col-md-8 mb-4">
-        <div class="row mobile-margin" >
-            <div class="box col-sm-12" style="padding:10px">
-                <div id="chart" >
-                    <app-tvchart></app-tvchart>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row mt-3 mobile-margin">
-            <div class="col-lg-12" style="padding:5px;">
-                <div class="box" style="padding:20px">
-                    <app-trades></app-trades>
-                </div>
-            </div>
-
-        </div>
-        <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile-display" style="padding:30px 10px;">
-            <app-sponsor></app-sponsor>
-        </div>
+    <div class="box col-sm-12 mt-3 mb-3 sponsor-mobile-display" style="padding:30px 10px;">
+      <app-sponsor></app-sponsor>
     </div>
+  </div>
 </div>

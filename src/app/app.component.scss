@@ -1,53 +1,53 @@
-@import '../global.scss';
-@import '../loader.scss';
+@import "../global.scss";
+@import "../loader.scss";
 :host {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  mat-drawer {
-    width: 70px;
-  }
-  @media screen and (max-width:600px) {
-    mat-drawer {
-      width: 50px;
-    }
-  }
-
-  mat-drawer-container {
-    height: 100%;
-    background-color: $primary-darker;
-  }
-
-  .mat-drawer{
-    background-color: $primary-darker !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.load-text{
-  position:absolute;
-  top:40%;
-  font-weight:bolder;
-  left:50%;
+mat-drawer {
+  width: 70px;
+}
+@media screen and (max-width: 600px) {
+  mat-drawer {
+    width: 50px;
+  }
+}
+
+mat-drawer-container {
+  height: 100%;
+  background-color: $primary-darker;
+}
+
+.mat-drawer {
+  background-color: $primary-darker !important;
+}
+
+.load-text {
+  position: absolute;
+  top: 40%;
+  font-weight: bolder;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 95;
-  color:$secondary;
+  color: $secondary;
 }
 .overlay {
   position: fixed;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   background-color: $primary-darker;
-  opacity:0.8;
-  z-index: 90; 
-  cursor: pointer; 
+  opacity: 0.8;
+  z-index: 90;
+  cursor: pointer;
 }
-.load{
-  display:block;
+.load {
+  display: block;
 }
-.hide{
-  display:none;
+.hide {
+  display: none;
 }
-.notifier__notification-message{
-  z-index:110;
+.notifier__notification-message {
+  z-index: 110;
 }

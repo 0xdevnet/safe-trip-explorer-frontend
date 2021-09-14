@@ -1,5 +1,4 @@
-@import '../../../global';
-
+@import "../../../global";
 
 .logo {
   text-align: center;
@@ -9,17 +8,17 @@
 }
 .mat-list-item {
   color: white !important;
-  margin-bottom:6px;
+  margin-bottom: 6px;
   ::ng-deep {
     .mat-list-item-content {
-      font-size:30px;
-      color:$secondary;
+      font-size: 30px;
+      color: $secondary;
       border-radius: 10px;
 
-      display:flex;
+      display: flex;
       justify-content: center;
       &:hover {
-        color:$secondary;
+        color: $secondary;
         background: $primary !important;
       }
     }
@@ -29,9 +28,8 @@
   ::ng-deep {
     .mat-list-item-content {
       &:hover {
-        color:$secondary;
+        color: $secondary;
       }
     }
   }
 }
-  

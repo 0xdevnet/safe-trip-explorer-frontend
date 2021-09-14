@@ -1,28 +1,21 @@
-
 <mat-nav-list>
-    <div class="logo" >
-      <a routerLink="/">
-        <img src="../../../assets/SafeTrip.svg" alt="Logo" />
-      </a>
-    </div>
-    <hr>
-  
-    <a class="nav-item" mat-list-item
-      #tooltip_dashboard="matTooltip"
-      matTooltip="Dashboard"
-      routerLinkActive="list-item-active" routerLink="/dashboard">
-      <span class="bi bi-grid-fill"></span> 
+  <div class="logo">
+    <a routerLink="/">
+      <img src="../../../assets/SafeTrip.svg" alt="Logo" />
     </a>
-    <a class="nav-item" mat-list-item
-      #tooltip_explorer="matTooltip"
-      matTooltip="Explorer"
-      routerLinkActive="list-item-active" routerLink="/explorer/0x6e49d16e53443c06b86a42c259227464b8987af0">
-      <span class="bi bi-compass-fill"></span> 
-    </a> 
-    <a class="nav-item align-self-end" mat-list-item
-      #tooltip_explorer="matTooltip"
-      matTooltip="Newly Added"
-      routerLinkActive="list-item-active" routerLink="/newly-added">
-      <span class="bi bi-plus-circle-fill"></span> 
-    </a>   
-  </mat-nav-list>
+  </div>
+  <hr>
+
+  <a class="nav-item" mat-list-item #tooltip_dashboard="matTooltip" matTooltip="Dashboard"
+    routerLinkActive="list-item-active" routerLink="/dashboard">
+    <span class="bi bi-grid-fill"></span>
+  </a>
+  <a class="nav-item" mat-list-item #tooltip_explorer="matTooltip" matTooltip="Explorer"
+    routerLinkActive="list-item-active" routerLink="/explorer/0x6e49d16e53443c06b86a42c259227464b8987af0">
+    <span class="bi bi-compass-fill"></span>
+  </a>
+  <a class="nav-item align-self-end" mat-list-item #tooltip_explorer="matTooltip" matTooltip="Newly Added"
+    routerLinkActive="list-item-active" routerLink="/newly-added">
+    <span class="bi bi-plus-circle-fill"></span>
+  </a>
+</mat-nav-list>

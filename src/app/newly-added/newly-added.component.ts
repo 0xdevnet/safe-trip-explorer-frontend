@@ -8,9 +8,9 @@ import { MetadataService } from '../services/metadata.service';
 })
 export class NewlyAddedComponent implements OnInit {
 
-  constructor(private meta:MetadataService) {
+  constructor(private meta: MetadataService) {
     this.meta.setLoading(false);
-   }
+  }
 
   ngOnInit(): void {
   }

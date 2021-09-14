@@ -1,53 +1,50 @@
 <div class="d-flex justify-content-center align-items-center">
-    <div class="text-white mr-2">
-        <img width="35" src="https://seeklogo.com/images/P/pancakeswap-cake-logo-855C872947-seeklogo.com.png">
-    </div>
-    <div class="">
-        <input class="form-control bg-secondary-light" 
-        placeholder="Search Name/Token Address"
-        type="text" [(ngModel)]="value" required>
-    </div>
-    <div>
-        <button type="button" (click)="searchToken(content)"
-        class="btn btn-secondary ml-2">
-            <i class="bi bi-search text-dark"></i>
-        </button>
-    </div>
+  <div class="text-white mr-2">
+    <img width="35" src="https://seeklogo.com/images/P/pancakeswap-cake-logo-855C872947-seeklogo.com.png">
+  </div>
+  <div class="">
+    <input class="form-control bg-secondary-light" placeholder="Search Name/Token Address" type="text"
+      [(ngModel)]="value" required>
+  </div>
+  <div>
+    <button type="button" (click)="searchToken(content)" class="btn btn-secondary ml-2">
+      <i class="bi bi-search text-dark"></i>
+    </button>
+  </div>
 </div>
 
 <ng-template #content let-modal>
-    <div class="modal-header bg-primary">
-      <h3 class="modal-title text-secondary font-weight-bold" id="modal-basic-title">Search Results</h3>
-      <button type="button" class="close text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="modal-header bg-primary">
+    <h3 class="modal-title text-secondary font-weight-bold" id="modal-basic-title">Search Results</h3>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-primary-dark">
+    <div class="loader d-flex justify-content-center">
+      <div class="spinner-border text-white mt-5 mb-5" role="status" *ngIf="isLoading">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
-    <div class="modal-body bg-primary-dark">
-        <div class="loader d-flex justify-content-center">
-            <div class="spinner-border text-white mt-5 mb-5" role="status" *ngIf="isLoading">
-                <span class="sr-only">Loading...</span>
+
+    <div class="d-flex align-items-stretch justify-content-center flex-column">
+      <div class="mt-3 mb-2" *ngFor="let pair of result;let i = index" style="cursor:pointer">
+        <div class="d-flex justify-content-center" id="{{pair.smartContract.address.address}}"
+          (click)="navigate(pair.smartContract.address.address)">
+          <h2 style="font-size:30px;" class="name text-secondary align-self-center mr-3">#{{i+1}} </h2>
+          <div>
+            <h3 class="text-secondary name">{{pair.baseCurrency.symbol}}/{{pair.quoteCurrency.symbol}}</h3>
+            <div class="d-flex flex-column justify-content-between mr-2 text-white">
+              <h4>Contract: ...{{pair.baseCurrency.address | slice:-6}} </h4>
+              <h4> Contract: ...{{pair.quoteCurrency.address | slice:-6}}</h4>
             </div>
+          </div>
+
         </div>
 
-        <div class="d-flex align-items-stretch justify-content-center flex-column">
-            <div class="mt-3 mb-2" *ngFor="let pair of result;let i = index" style="cursor:pointer">
-                <div class="d-flex justify-content-center" 
-                id="{{pair.smartContract.address.address}}" 
-                (click)="navigate(pair.smartContract.address.address)">
-                    <h2 style="font-size:30px;" class="name text-secondary align-self-center mr-3">#{{i+1}} </h2>
-                    <div  >
-                        <h3 class="text-secondary name">{{pair.baseCurrency.symbol}}/{{pair.quoteCurrency.symbol}}</h3>
-                        <div class="d-flex flex-column justify-content-between mr-2 text-white">
-                            <h4>Contract: ...{{pair.baseCurrency.address | slice:-6}} </h4>
-                            <h4> Contract: ...{{pair.quoteCurrency.address | slice:-6}}</h4>
-                        </div>
-                    </div>
-                     
-                </div>
-                
-            </div>
-            
-        </div>
+      </div>
 
     </div>
-  </ng-template>
+
+  </div>
+</ng-template>

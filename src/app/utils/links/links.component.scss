@@ -1,13 +1,12 @@
-@import '../../../global.scss';
-.icons{
-    margin-right:10px;
-    border-radius: 50%;
-    height:30px;
-    padding:2px;
-    width:30px;
-    background-color:rgb(238, 238, 238);
-    &:hover{
-        background-color:$secondary-dark;
-    }
-
+@import "../../../global.scss";
+.icons {
+  margin-right: 10px;
+  border-radius: 50%;
+  height: 30px;
+  padding: 2px;
+  width: 30px;
+  background-color: rgb(238, 238, 238);
+  &:hover {
+    background-color: $secondary-dark;
+  }
 }

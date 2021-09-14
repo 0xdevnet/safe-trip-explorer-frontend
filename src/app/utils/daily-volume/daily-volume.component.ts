@@ -10,7 +10,7 @@ import { MetadataService } from 'src/app/services/metadata.service';
 })
 export class DailyVolumeComponent implements OnInit {
 
-  @Input() volume:any[] = [];
+  @Input() volume: any[] = [];
 
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Daily Volume' },
@@ -19,20 +19,20 @@ export class DailyVolumeComponent implements OnInit {
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    aspectRatio:1.8,
+    aspectRatio: 1.8,
     scales: {
       xAxes: [{
-      display:false,
-      gridLines: {
-        display:false,
+        display: false,
+        gridLines: {
+          display: false,
         }
       }],
       yAxes: [{
-        display:false,
+        display: false,
         gridLines: {
-          display:false,
+          display: false,
         },
-        ticks:{
+        ticks: {
           padding: 100,
         }
       }]
@@ -43,25 +43,25 @@ export class DailyVolumeComponent implements OnInit {
       borderColor: '#FFF9D2',
       backgroundColor: '#fff08e26',
     },
-    
+
   ];
   public lineChartLegend = false;
   public lineChartType: ChartType = 'line';
-  public dailyVolume:any[] = [];
-  public lastestVolume:any = "";
+  public dailyVolume: any[] = [];
+  public lastestVolume: any = "";
 
-  constructor() { 
+  constructor() {
 
   }
-  ngOnChanges(){
+  ngOnChanges() {
     this.lineChartData[0].data = this.volume.map(day => {
       return day.tradeAmount;
     })
     this.lineChartLabels = this.volume.map(day => {
       return day.timeInterval.day;
     })
-    
-    if(this.volume.length){
+
+    if (this.volume.length) {
       this.lastestVolume = this.volume[this.volume.length - 1].tradeAmount;
 
     }

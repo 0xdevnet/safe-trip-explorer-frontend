@@ -8,9 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LinksComponent implements OnInit {
 
   constructor() { }
-  @Input() data:any;
-  @Input() tokens:any;
-  @Input() coinLoaded:boolean = false;
+  @Input() data: any;
+  @Input() tokens: any;
+  @Input() coinLoaded: boolean = false;
 
   ngOnInit(): void {
 

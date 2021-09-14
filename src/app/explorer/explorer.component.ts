@@ -14,29 +14,29 @@ import { CoinGeckoService } from '../services/coin-gecko.service';
 export class ExplorerComponent implements OnInit {
 
   private readonly notifier: NotifierService;
-  public address:string='0x6e49d16e53443c06b86a42c259227464b8987af0';
-  public tokens:any = "";
-  public metadata:any = "";
-  public coinData:any;
-  public coinLoaded:boolean = false;
+  public address: string = '0x6e49d16e53443c06b86a42c259227464b8987af0';
+  public tokens: any = "";
+  public metadata: any = "";
+  public coinData: any;
+  public coinLoaded: boolean = false;
 
-  private sub1:any;
-  private sub2:any;
-  private sub3:any;
+  private sub1: any;
+  private sub2: any;
+  private sub3: any;
 
-  constructor(private route:ActivatedRoute, 
-    notify:NotifierService, 
-    private tokenData:MetadataService,
-    private clipboard:ClipboardService,
-    private coinGecko:CoinGeckoService) { 
-    
+  constructor(private route: ActivatedRoute,
+    notify: NotifierService,
+    private tokenData: MetadataService,
+    private clipboard: ClipboardService,
+    private coinGecko: CoinGeckoService) {
+
     this.route.params.subscribe(params => {
-      if(params.slug != ''){
+      if (params.slug != '') {
         this.address = params.slug;
         this.tokenData.setAddress(this.address);
       }
     })
-     
+
     this.notifier = notify;
     this.loadTokens();
     this.loadMetadata();
@@ -48,45 +48,45 @@ export class ExplorerComponent implements OnInit {
     });
   }
 
-  loadTokens(){
-    this.sub2 = this.tokenData.getTokens().subscribe(data =>{
+  loadTokens() {
+    this.sub2 = this.tokenData.getTokens().subscribe(data => {
       this.tokens = data;
       this.coinGecko.getInfo(this.tokens.pair_base_address).subscribe({
-        next:next=>{
+        next: next => {
           this.coinData = next
           this.coinLoaded = true;
         },
-        error:error=>{
+        error: error => {
           this.coinLoaded = false;
         }
       })
     })
   }
 
-  loadMetadata(){
-    this.sub3 = this.tokenData.getMetadata().subscribe(data =>{
+  loadMetadata() {
+    this.sub3 = this.tokenData.getMetadata().subscribe(data => {
       this.metadata = data;
     })
   }
-  
-  copyContractAddress(){
+
+  copyContractAddress() {
     this.clipboard.copy(this.tokens.pair_base_address);
   }
 
-  copyPairAddress(){
+  copyPairAddress() {
     this.clipboard.copy(this.tokens.pair_address);
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
     this.sub3.unsubscribe();
   }
-  
+
 
 }

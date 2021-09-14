@@ -1,44 +1,44 @@
 @import "./global.scss";
 .loader {
-    color:grey;
-    z-index:100;
-    font-family:sans-serif;
-    height:20px;
-    left:50%;
-    overflow-x:hidden;
-    padding-top:30px;
-    position:absolute;
-    text-align:center;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:280px;
-    &:before {
-      animation:left-to-right 1s alternate infinite linear;
-      background-image:linear-gradient(to right, transparent, $secondary, transparent);
-      content:"";
-      height:20px;
-      left:0;
-      overflow:hidden;
-      position:absolute;
-      right:0;
-      top:0;
-    }
-    &:after {
-      content:"";
-      height:20px;
-      left:0;
-      overflow:hidden;
-      position:absolute;
-      right:0;
-      top:0;
-    }
+  color: grey;
+  z-index: 100;
+  font-family: sans-serif;
+  height: 20px;
+  left: 50%;
+  overflow-x: hidden;
+  padding-top: 30px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  &:before {
+    animation: left-to-right 1s alternate infinite linear;
+    background-image: linear-gradient(to right, transparent, $secondary, transparent);
+    content: "";
+    height: 20px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
-  
-  @keyframes left-to-right {
-    0% {
-      transform:translateX(-100%);
-    }
-    100% {
-      transform:translateX(100%);
-    }
+  &:after {
+    content: "";
+    height: 20px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
+}
+
+@keyframes left-to-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
