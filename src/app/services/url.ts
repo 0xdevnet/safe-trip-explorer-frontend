@@ -20,7 +20,7 @@ export class Url {
   }
 
   get ohlc_url() {
-    const param = localStorage.getItem('networkParam') || 'bss';
+    const param = localStorage.getItem('networkParam') || 'bsc';
     return environment.server_url + 'api/tokens/safe-trip-chart/' + param + '/';
   }
 
