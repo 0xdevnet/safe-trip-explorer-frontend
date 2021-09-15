@@ -12,11 +12,10 @@ import { CoinGeckoService } from '../services/coin-gecko.service';
   styleUrls: ['./explorer.component.scss'],
 })
 export class ExplorerComponent implements OnInit {
-
   private readonly notifier: NotifierService;
   public address: string = '0x6e49d16e53443c06b86a42c259227464b8987af0';
-  public tokens: any = "";
-  public metadata: any = "";
+  public tokens: any = '';
+  public metadata: any = '';
   public coinData: any;
   public coinLoaded: boolean = false;
 
@@ -24,18 +23,19 @@ export class ExplorerComponent implements OnInit {
   private sub2: any;
   private sub3: any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     notify: NotifierService,
     private tokenData: MetadataService,
     private clipboard: ClipboardService,
-    private coinGecko: CoinGeckoService) {
-
-    this.route.params.subscribe(params => {
+    private coinGecko: CoinGeckoService
+  ) {
+    this.route.params.subscribe((params) => {
       if (params.slug != '') {
         this.address = params.slug;
         this.tokenData.setAddress(this.address);
       }
-    })
+    });
 
     this.notifier = notify;
     this.loadTokens();
@@ -43,30 +43,30 @@ export class ExplorerComponent implements OnInit {
 
     this.sub1 = this.clipboard.copyResponse$.subscribe((res: any) => {
       if (res.isSuccess) {
-        this.notifier.notify('success', "Copied To Clipboard");
+        this.notifier.notify('success', 'Copied To Clipboard');
       }
     });
   }
 
   loadTokens() {
-    this.sub2 = this.tokenData.getTokens().subscribe(data => {
+    this.sub2 = this.tokenData.getTokens().subscribe((data) => {
       this.tokens = data;
       this.coinGecko.getInfo(this.tokens.pair_base_address).subscribe({
-        next: next => {
-          this.coinData = next
+        next: (next) => {
+          this.coinData = next;
           this.coinLoaded = true;
         },
-        error: error => {
+        error: (error) => {
           this.coinLoaded = false;
-        }
-      })
-    })
+        },
+      });
+    });
   }
 
   loadMetadata() {
-    this.sub3 = this.tokenData.getMetadata().subscribe(data => {
+    this.sub3 = this.tokenData.getMetadata().subscribe((data) => {
       this.metadata = data;
-    })
+    });
   }
 
   copyContractAddress() {
@@ -75,18 +75,13 @@ export class ExplorerComponent implements OnInit {
 
   copyPairAddress() {
     this.clipboard.copy(this.tokens.pair_address);
-
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
     this.sub3.unsubscribe();
   }
-
-
 }
