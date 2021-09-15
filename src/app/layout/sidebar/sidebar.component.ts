@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Api } from 'src/app/services/url'
+import { Url } from 'src/app/services/url'
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  constructor(private api: Api) {
+  constructor(private url: Url) {
   }
 
   ngOnInit(): void {
   }
 
 	clickEthereum() {
-		this.api.setNetworParam('ethereum')
+		this.url.setNetworParam('ethereum')
 	}
 
 	clickBsc() {
-		this.api.setNetworParam('bsc')
+		this.url.setNetworParam('bsc')
 
 	}
 
 	clickPolygon() {
-		this.api.setNetworParam('matic')
+		this.url.setNetworParam('matic')
 	}
 }
