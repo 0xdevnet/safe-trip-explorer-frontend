@@ -1,21 +1,67 @@
-<mat-nav-list>
-  <div class="logo">
-    <a routerLink="/">
-      <img src="../../../assets/SafeTrip.svg" alt="Logo" />
-    </a>
-  </div>
-  <hr>
+<div class="sidebar-container">
+  <mat-nav-list>
+    <div class="logo">
+      <a routerLink="/">
+        <img src="../../../assets/SafeTrip.svg" alt="Logo" />
+      </a>
+    </div>
+    <hr />
 
-  <a class="nav-item" mat-list-item #tooltip_dashboard="matTooltip" matTooltip="Dashboard"
-    routerLinkActive="list-item-active" routerLink="/dashboard">
-    <span class="bi bi-grid-fill"></span>
-  </a>
-  <a class="nav-item" mat-list-item #tooltip_explorer="matTooltip" matTooltip="Explorer"
-    routerLinkActive="list-item-active" routerLink="/explorer/0x6e49d16e53443c06b86a42c259227464b8987af0">
-    <span class="bi bi-compass-fill"></span>
-  </a>
-  <a class="nav-item align-self-end" mat-list-item #tooltip_explorer="matTooltip" matTooltip="Newly Added"
-    routerLinkActive="list-item-active" routerLink="/newly-added">
-    <span class="bi bi-plus-circle-fill"></span>
-  </a>
-</mat-nav-list>
+    <a
+      class="nav-item"
+      mat-list-item
+      #tooltip_dashboard="matTooltip"
+      matTooltip="Dashboard"
+      routerLinkActive="list-item-active"
+      routerLink="/dashboard"
+    >
+      <span class="bi bi-grid-fill"></span>
+    </a>
+    <a
+      class="nav-item"
+      mat-list-item
+      #tooltip_explorer="matTooltip"
+      matTooltip="Explorer"
+      routerLinkActive="list-item-active"
+      routerLink="/explorer/0x6e49d16e53443c06b86a42c259227464b8987af0"
+    >
+      <span class="bi bi-compass-fill"></span>
+    </a>
+    <a
+      class="nav-item align-self-end"
+      mat-list-item
+      #tooltip_explorer="matTooltip"
+      matTooltip="Newly Added"
+      routerLinkActive="list-item-active"
+      routerLink="/newly-added"
+    >
+      <span class="bi bi-plus-circle-fill"></span>
+    </a>
+  </mat-nav-list>
+  <div class="chain-switch">
+    <button
+      class="nav-item mat-list-item"
+      type="button"
+      class="close text-white"
+      aria-label="Close"
+    >
+      <img src="../../../assets/svgs/ethereum.svg" alt="Logo" />
+    </button>
+    <button
+      class="nav-item mat-list-item"
+      type="button"
+      class="close text-white"
+      aria-label="Close"
+    >
+      <img src="../../../assets/svgs/bsc.svg" alt="Logo" />
+    </button>
+    <button
+      class="nav-item mat-list-item"
+      type="button"
+      class="close text-white"
+      aria-label="Close"
+    >
+      <img src="../../../assets/svgs/polygonscan.svg" alt="Logo" />
+    </button>
+  </div>
+</div>

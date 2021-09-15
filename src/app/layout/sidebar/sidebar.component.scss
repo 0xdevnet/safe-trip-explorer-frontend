@@ -33,3 +33,24 @@
     }
   }
 }
+
+.sidebar-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+}
+
+.chain-switch {
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+
+	button {
+		margin-bottom: 16px;
+		img {
+		  width: 30px;
+		  height: 30px;
+		}
+	  }
+}
