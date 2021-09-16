@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Url } from './url';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,12 @@ export class CoinGeckoService {
   private headers: any = {
     "accept": "application/json"
   }
-  private url: any = "https://api.coingecko.com/api/v3/coins/binance-smart-chain/contract/"
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private url: Url) {
 
   }
 
   getInfo(contract: any) {
-    return this.http.get(this.url + contract, { headers: this.headers, observe: 'body', responseType: 'json' })
+    return this.http.get(this.url.coingecko_url + contract, { headers: this.headers, observe: 'body', responseType: 'json' })
   }
 }

@@ -20,8 +20,7 @@ export class Url {
   }
 
   get ohlc_url() {
-    const param = localStorage.getItem('networkParam') || 'bsc';
-    return environment.server_url + 'api/tokens/safe-trip-chart/' + param + '/';
+    return environment.server_url + 'api/tokens/safe-trip-chart/';
   }
 
   get trendlist_url() {
@@ -32,5 +31,14 @@ export class Url {
   get sponsoredlist_url() {
     const param = localStorage.getItem('networkParam') || 'bsc';
     return environment.server_url + 'api/tokens/trending/' + param + '/';
+  }
+
+  get coingecko_url() {
+    const param = localStorage.getItem('networkParam') || 'bsc';
+    if (param === 'bsc')
+      return 'https://api.coingecko.com/api/v3/coins/binance-smart-chain/contract/';
+    else if (param === 'ethereum')
+      return 'https://api.coingecko.com/api/v3/coins/ethereum/contract/';
+    else return 'https://api.coingecko.com/api/v3/coins/polygon-pos/contract/';
   }
 }
