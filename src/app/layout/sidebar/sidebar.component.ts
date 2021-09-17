@@ -1,27 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Url } from 'src/app/services/url'
+import { ActivatedRoute, Router } from '@angular/router';
+import { Url } from 'src/app/services/url';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  constructor(private url: Url) {
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private url: Url
+  ) {}
+
+  ngOnInit(): void {}
+
+  clickDashboard() {
+    const networkParams = this.url.networkParam;
+    this.router.navigate([networkParams + '/dashboard']);
   }
 
-  ngOnInit(): void {
+  async clickEthereum() {
+    this.url.setNetworkParam('ethereum');
+    this.router.navigate([], { queryParams: { network: 'ethereum' } });
   }
 
-	clickEthereum() {
-		this.url.setNetworParam('ethereum')
-	}
+  clickBsc() {
+    this.url.setNetworkParam('bsc');
+    this.router.navigate([], { queryParams: { network: 'bsc' } });
+  }
 
-	clickBsc() {
-		this.url.setNetworParam('bsc')
-
-	}
-
-	clickPolygon() {
-		this.url.setNetworParam('matic')
-	}
+  clickPolygon() {
+    this.url.setNetworkParam('matic');
+    this.router.navigate([], { queryParams: { network: 'matic' } });
+  }
 }

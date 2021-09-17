@@ -5,7 +5,6 @@ import { NotifierService } from 'angular-notifier';
 import { MetadataService } from '../services/metadata.service';
 import { ClipboardService } from 'ngx-clipboard';
 import { CoinGeckoService } from '../services/coin-gecko.service';
-
 @Component({
   selector: 'app-explorer',
   templateUrl: './explorer.component.html',
@@ -77,7 +76,10 @@ export class ExplorerComponent implements OnInit {
     this.clipboard.copy(this.tokens.pair_address);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.sub = this.route.queryParams.subscribe(async params => {
+    // });
+  }
 
   ngOnDestroy() {
     this.sub1.unsubscribe();

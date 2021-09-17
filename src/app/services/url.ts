@@ -9,7 +9,7 @@ export class Url {
 
   constructor() {}
 
-  setNetworParam(param: string) {
+  setNetworkParam(param: string) {
     this.networkParam = param;
     localStorage.setItem('networkParam', param);
   }

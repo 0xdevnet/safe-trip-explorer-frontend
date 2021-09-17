@@ -7,9 +7,14 @@ import { NotFoundComponent } from './utils/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'newly-added', component: NewlyAddedComponent },
-  { path: 'explorer/:slug', component: ExplorerComponent },
+	{ path: 'dashboard', component: DashboardComponent },
+	{ path: 'newly-added', component: NewlyAddedComponent },
+	{ 
+		path: 'explorer', component: ExplorerComponent,
+		children: [
+			{ path: ':slug', component: ExplorerComponent }
+		]
+	},
   { path: '**', component: NotFoundComponent },
 ];
 
