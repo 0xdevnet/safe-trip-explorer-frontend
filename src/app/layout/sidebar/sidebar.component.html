@@ -13,7 +13,7 @@
       #tooltip_dashboard="matTooltip"
       matTooltip="Dashboard"
       routerLinkActive="list-item-active"
-      routerLink="/dashboard"
+      (click)="clickDashboard()"
     >
       <span class="bi bi-grid-fill"></span>
     </a>
@@ -23,7 +23,7 @@
       #tooltip_explorer="matTooltip"
       matTooltip="Explorer"
       routerLinkActive="list-item-active"
-      routerLink="/explorer/0x6e49d16e53443c06b86a42c259227464b8987af0"
+      (click)="clickExplorer()"
     >
       <span class="bi bi-compass-fill"></span>
     </a>

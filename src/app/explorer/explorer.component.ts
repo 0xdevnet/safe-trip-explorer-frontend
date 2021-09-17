@@ -5,6 +5,8 @@ import { NotifierService } from 'angular-notifier';
 import { MetadataService } from '../services/metadata.service';
 import { ClipboardService } from 'ngx-clipboard';
 import { CoinGeckoService } from '../services/coin-gecko.service';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-explorer',
   templateUrl: './explorer.component.html',
@@ -18,6 +20,8 @@ export class ExplorerComponent implements OnInit {
   public coinData: any;
   public coinLoaded: boolean = false;
 
+  sub: Subscription = new Subscription();
+
   private sub1: any;
   private sub2: any;
   private sub3: any;
@@ -29,34 +33,23 @@ export class ExplorerComponent implements OnInit {
     private clipboard: ClipboardService,
     private coinGecko: CoinGeckoService
   ) {
-    this.route.params.subscribe((params) => {
-      if (params.slug != '') {
-        this.address = params.slug;
-        this.tokenData.setAddress(this.address);
-      }
-    });
-
     this.notifier = notify;
-    this.loadTokens();
-    this.loadMetadata();
-
-    this.sub1 = this.clipboard.copyResponse$.subscribe((res: any) => {
-      if (res.isSuccess) {
-        this.notifier.notify('success', 'Copied To Clipboard');
-      }
-    });
   }
 
   loadTokens() {
     this.sub2 = this.tokenData.getTokens().subscribe((data) => {
-      this.tokens = data;
+			this.tokens = data;
+			console.log("this.tokens?", this.tokens)
       this.coinGecko.getInfo(this.tokens.pair_base_address).subscribe({
         next: (next) => {
           this.coinData = next;
           this.coinLoaded = true;
+					console.log("coinLoaded?", this.coinLoaded)
         },
         error: (error) => {
           this.coinLoaded = false;
+					console.log("coinLoaded?", this.coinLoaded)
+
         },
       });
     });
@@ -77,11 +70,28 @@ export class ExplorerComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.sub = this.route.queryParams.subscribe(async params => {
-    // });
+    this.sub = this.route.queryParams.subscribe(async (params) => {
+			console.log("params??", params)
+      if (params.address != '') {
+        this.address = params.address;
+        console.log('this.address?', this.address);
+        this.tokenData.setAddress(this.address);
+      }
+
+      // this.notifier = notify;
+      this.loadTokens();
+      this.loadMetadata();
+
+      this.sub1 = this.clipboard.copyResponse$.subscribe((res: any) => {
+        if (res.isSuccess) {
+          this.notifier.notify('success', 'Copied To Clipboard');
+        }
+      });
+    });
   }
 
   ngOnDestroy() {
+    this.sub.unsubscribe();
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
     this.sub3.unsubscribe();
